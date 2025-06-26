@@ -3123,6 +3123,50 @@ input, select, textarea {
 					margin: 0 auto;
 					max-width: 75%;
 				}
+			                .logo img {
+						border-radius: 2px;
+						display: block;
+					}
+			
+					.logo.left, .logo.right {
+						max-width: 40%;
+					}
+			
+						.logo.left img, .logo.right img {
+							width: 100%;
+						}
+			
+					.logo.left {
+						float: left;
+						margin: 0 1.5em 1em 0;
+						top: 0.25em;
+					}
+			
+					.logo.right {
+						float: right;
+						margin: 0 0 1em 1.5em;
+						top: 0.25em;
+					}
+			
+					.logo.fit {
+						display: block;
+						margin: 0 0 2em 0;
+						width: 100%;
+					}
+			
+						.logo.fit img {
+							width: 100%;
+						}
+			
+					.logo.main {
+						display: block;
+						margin: 0 0 3em 0;
+						width: 100%;
+					}
+			
+						.logo.main img {
+							width: 100%;
+						}
 
 		@media screen and (max-width: 1280px) {
 
