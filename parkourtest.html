@@ -97,20 +97,26 @@
 							
 							<script>
 							  document.addEventListener("DOMContentLoaded", function () {
-							    const imageWidth = 1080; // replace with actual width
-							    const imageHeight = 1920; // replace with actual height
-							
+							    const imageWidth = 1080;
+							    const imageHeight = 1920;
 							    const bounds = [[0, 0], [imageHeight, imageWidth]];
 							
 							    const map = L.map('map', {
 							      crs: L.CRS.Simple,
-							      minZoom: -5,
 							      maxZoom: 2,
-							      zoomSnap: 0.25
+							      zoomSnap: 0.25,
+							      zoomControl: true
 							    });
 							
 							    L.imageOverlay('images/ParkourHeaddownUpdated.png', bounds).addTo(map);
+							
+							    // Fit to image bounds and set that zoom level as the minimum
 							    map.fitBounds(bounds);
+							    const currentZoom = map.getZoom();
+							    map.setMinZoom(currentZoom);
+							
+							    // Optional: prevent panning far outside image bounds
+							    map.setMaxBounds(bounds);
 							  });
 							</script>
 
