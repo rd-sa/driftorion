@@ -82,40 +82,47 @@
 									<h2>What We Do</h2>
 									<p>"Where Max-Level Players Compete, Conquer, and Connect in Orion Drift"</p>
 								</header>
-								<!--
-								<ul class="statistics">
-									<li class="style1">
-										<span class="icon solid fa-code-branch"></span>
-										<strong>5,120</strong> Etiam
-									</li>
-									<li class="style2">
-										<span class="icon fa-folder-open"></span>
-										<strong>8,192</strong> Magna
-									</li>
-									<li class="style3">
-										<span class="icon solid fa-signal"></span>
-										<strong>2,048</strong> Tempus
-									</li>
-									<li class="style4">
-										<span class="icon solid fa-laptop"></span>
-										<strong>4,096</strong> Aliquam
-									</li>
-									<li class="style5">
-										<span class="icon fa-gem"></span>
-										<strong>1,024</strong> Nullam
-									</li>
-								</ul>
-								-->
-								<p class="content">Welcome to our elite Orion Drift group, where only the most skilled max-level players come together to dominate every aspect of the game. We specialize in high-level Driftball games, where teamwork and precision are key, and we’re always ready to show off our skills in intense parkour challenges. Whether we're leaping across difficult terrain or competing in thrilling in-game server raids, we bring our A-game to every event. As experienced players, we know how to strategize and execute flawlessly, ensuring that every match or raid is an opportunity to showcase our expertise and push the limits of the game. But it’s not all about competition—our group is also a place to simply hang out and have fun with like-minded individuals. Beyond the adrenaline-pumping events, we enjoy connecting with each other in-game, sharing tips, building friendships, and creating a strong, tight-knit community. Whether we’re tackling the hardest content or just relaxing between challenges, our group is always active, engaged, and ready for the next adventure in Orion Drift. Join us, and be a part of a squad where skill, camaraderie, and passion for the game come together.
-
-
-
-</p>
-								<footer class="major">
-									<ul class="actions special">
-										<li><a href="more" class="button">Learn More</a></li>
-									</ul>
-								</footer>
+								<meta name="viewport" content="width=device-width, initial-scale=1.0">
+								  <link 
+								    rel="stylesheet" 
+								    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+								    integrity="sha512-sA+NCD39t1f8V8vN9R/3XkPMqBtF1v7s3DN3Szj6O2sBtZxM7K9QYo6a6BaH0rmU7dKHPFLuhQs4XrrfwnQpNQ=="
+								    crossorigin=""
+								  />
+								  <style>
+								    html, body { margin: 0; height: 100%; }
+								    #map { width: 100%; height: 100%; }
+								  </style>
+								</head>
+								<body>
+								  <div id="map"></div>
+								
+								  <script 
+								    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+								    integrity="sha512-o9N1j/GRtS5MZlm8df4U5wB+d9VrxFf1MHBkHqHbFPrdyqXEQyfwBJKvOZg+1OfU2CdyPI+R+Id+a5TCv4jDqQ=="
+								    crossorigin="">
+								  </script>
+								  <script>
+								    // Set your image dimensions (replace with your actual image size)
+								    const imageWidth = 1080;
+								    const imageHeight = 1920;
+								
+								    // Define image bounds in pixel space
+								    const bounds = [[0, 0], [imageHeight, imageWidth]];
+								
+								    // Create map with Simple CRS (non-geo)
+								    const map = L.map('map', {
+								      crs: L.CRS.Simple,
+								      minZoom: -5,
+								      maxZoom: 2,
+								      zoomSnap: 0.25,
+								    });
+								
+								    // Add the image to the map
+								    const image = L.imageOverlay('images/ParkourHeaddownUpdated.png', bounds).addTo(map);
+								    map.fitBounds(bounds);
+								  </script>
+								</body>
 							</section>
 
 						<!-- Get Started -->
