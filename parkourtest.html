@@ -97,31 +97,23 @@
 							
 							<script>
 							  document.addEventListener("DOMContentLoaded", function () {
-							    const imageWidth = 1080;
-							    const imageHeight = 1920;
+							    const imageWidth = 1080; // replace with actual width
+							    const imageHeight = 1920; // replace with actual height
+							
 							    const bounds = [[0, 0], [imageHeight, imageWidth]];
 							
 							    const map = L.map('map', {
 							      crs: L.CRS.Simple,
-							      zoomControl: true,
+							      minZoom: -5,
 							      maxZoom: 2,
 							      zoomSnap: 0.25
 							    });
 							
-							    const image = L.imageOverlay('images/ParkourHeaddownUpdated.png', bounds).addTo(map);
-							
-							    map.whenReady(() => {
-							      map.fitBounds(bounds); // Fit the whole image on screen
-							
-							      // After fitting, get the zoom level and set it as the minimum
-							      const currentZoom = map.getZoom();
-							      map.setMinZoom(currentZoom);
-							
-							      // Optional: prevent panning way off the image
-							      map.setMaxBounds(bounds);
-							    });
+							    L.imageOverlay('images/ParkourHeaddownUpdated.png', bounds).addTo(map);
+							    map.fitBounds(bounds);
 							  });
 							</script>
+
 
 
 
