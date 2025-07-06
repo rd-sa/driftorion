@@ -110,15 +110,18 @@
 							
 							    L.imageOverlay('images/ParkourHeaddownUpdated.png', bounds).addTo(map);
 							
-							    // Fit to image bounds and set that zoom level as the minimum
-							    map.fitBounds(bounds);
-							    const currentZoom = map.getZoom();
-							    map.setMinZoom(currentZoom);
+							    // Calculate the zoom level that fits the image fully in view
+							    const fullZoomOut = map.getBoundsZoom(bounds, false);
 							
-							    // Optional: prevent panning far outside image bounds
+							    // Set both initial and minimum zoom to that level
+							    map.setView(map.unproject([imageWidth / 2, imageHeight / 2], fullZoomOut), fullZoomOut);
+							    map.setMinZoom(fullZoomOut);
+							
+							    // Optional: lock panning to image bounds
 							    map.setMaxBounds(bounds);
 							  });
 							</script>
+
 
 
 						<!-- Get Started -->
