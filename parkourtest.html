@@ -82,35 +82,36 @@
 							    <h2>Parkour Map</h2>
 							    <p>"Where Max-Level Players Compete, Conquer, and Connect in Orion Drift"</p>
 							  </header>
+							  <!-- Map container -->
 							  <div id="map" style="width: 100%; height: 600px; border: 2px solid #ccc;"></div>
 							</section>
 							
-							<!-- Leaflet dependencies and map logic (at bottom of body, before </body>) -->
+							<!-- Leaflet Styles + Script (put below this section or just before </body>) -->
 							<link 
 							  rel="stylesheet" 
 							  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-							  integrity="sha512-sA+NCD39t1f8V8vN9R/3XkPMqBtF1v7s3DN3Szj6O2sBtZxM7K9QYo6a6BaH0rmU7dKHPFLuhQs4XrrfwnQpNQ=="
-							  crossorigin=""
 							/>
 							<script 
-							  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-							  integrity="sha512-o9N1j/GRtS5MZlm8df4U5wB+d9VrxFf1MHBkHqHbFPrdyqXEQyfwBJKvOZg+1OfU2CdyPI+R+Id+a5TCv4jDqQ=="
-							  crossorigin="">
+							  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
 							</script>
+							
 							<script>
-							  const imageWidth = 1080;
-							  const imageHeight = 1920;
-							  const bounds = [[0, 0], [imageHeight, imageWidth]];
+							  document.addEventListener("DOMContentLoaded", function () {
+							    const imageWidth = 1080; // replace with actual width
+							    const imageHeight = 1920; // replace with actual height
 							
-							  const map = L.map('map', {
-							    crs: L.CRS.Simple,
-							    minZoom: -5,
-							    maxZoom: 2,
-							    zoomSnap: 0.25,
+							    const bounds = [[0, 0], [imageHeight, imageWidth]];
+							
+							    const map = L.map('map', {
+							      crs: L.CRS.Simple,
+							      minZoom: -5,
+							      maxZoom: 2,
+							      zoomSnap: 0.25
+							    });
+							
+							    L.imageOverlay('images/ParkourHeaddownUpdated.png', bounds).addTo(map);
+							    map.fitBounds(bounds);
 							  });
-							
-							  L.imageOverlay('https://www.driftorion.com/images/ParkourHeaddownUpdated.png', bounds).addTo(map);
-							  map.fitBounds(bounds);
 							</script>
 
 
