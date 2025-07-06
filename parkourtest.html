@@ -103,24 +103,26 @@
 							
 							    const map = L.map('map', {
 							      crs: L.CRS.Simple,
+							      zoomControl: true,
 							      maxZoom: 2,
-							      zoomSnap: 0.25,
-							      zoomControl: true
+							      zoomSnap: 0.25
 							    });
 							
-							    L.imageOverlay('images/ParkourHeaddownUpdated.png', bounds).addTo(map);
+							    const image = L.imageOverlay('images/ParkourHeaddownUpdated.png', bounds).addTo(map);
 							
-							    // Calculate the zoom level that fits the image fully in view
-							    const fullZoomOut = map.getBoundsZoom(bounds, false);
+							    map.whenReady(() => {
+							      map.fitBounds(bounds); // Fit the whole image on screen
 							
-							    // Set both initial and minimum zoom to that level
-							    map.setView(map.unproject([imageWidth / 2, imageHeight / 2], fullZoomOut), fullZoomOut);
-							    map.setMinZoom(fullZoomOut);
+							      // After fitting, get the zoom level and set it as the minimum
+							      const currentZoom = map.getZoom();
+							      map.setMinZoom(currentZoom);
 							
-							    // Optional: lock panning to image bounds
-							    map.setMaxBounds(bounds);
+							      // Optional: prevent panning way off the image
+							      map.setMaxBounds(bounds);
+							    });
 							  });
 							</script>
+
 
 
 
