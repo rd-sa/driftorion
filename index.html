@@ -84,6 +84,53 @@
 							    map.fitBounds(bounds);
 							  });
 							</script>
+						        <div style="text-align: center;">
+							    <h3>Last Updated: 7/8</h3>
+							    
+							    <details id="badge-details">
+							      <summary id="badge-summary" style="cursor: pointer; font-weight: bold; margin-bottom: 10px;">
+							        Click to Show Map Key
+							      </summary>
+							      <ol style="
+							        list-style-position: inside;
+							        padding-left: 0;
+							        display: inline-block;
+							        text-align: left;
+							        columns: 2;
+							        column-gap: 40px;
+							        margin-top: 10px;
+							      ">
+							        <li>MisfortuneVR</li>
+							        <li>Dxso</li>
+							        <li>Mintister</li>
+							        <li>LGloki</li>
+							        <li>Scr1bbl</li>
+							        <li>DMrD</li>
+							        <li>Jack_sparrow28</li>
+							        <li>Purple</li>
+							        <li>rcharlieb</li>
+							        <li>Reaper Void</li>
+							        <li>VLZ_ALD8</li>
+							        <li>FireCraze</li>
+							        <li>Peace333</li>
+							        <li>StarBurst</li>
+							      </ol>
+							    </details>
+							  </div>
+							
+							<script>
+							  const details = document.getElementById("badge-details");
+							  const summary = document.getElementById("badge-summary");
+							
+							  details.addEventListener("toggle", () => {
+							    if (details.open) {
+							      summary.textContent = "Click to Hide Map Key";
+							    } else {
+							      summary.textContent = "Click to Show Map Key";
+							    }
+							  });
+							</script>
+
 
 
 						
