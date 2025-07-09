@@ -84,11 +84,9 @@
 							    map.fitBounds(bounds);
 							  });
 							</script>
-						        <div style="text-align: center;">
-							    <h3>Last Updated: 7/8</h3>
-							    
-							    <details id="badge-details">
-							      <summary id="badge-summary" style="cursor: pointer; font-weight: bold; margin-bottom: 10px;">
+						        <div style="text-align: center;"> 
+							    <details id="map-details">
+							      <summary id="map-summary" style="cursor: pointer; font-weight: bold; margin-bottom: 10px;">
 							        Click to Show Map Key
 							      </summary>
 							      <ol style="
@@ -119,8 +117,8 @@
 							  </div>
 							
 							<script>
-							  const details = document.getElementById("badge-details");
-							  const summary = document.getElementById("badge-summary");
+							  const details = document.getElementById("map-details");
+							  const summary = document.getElementById("map-summary");
 							
 							  details.addEventListener("toggle", () => {
 							    if (details.open) {
