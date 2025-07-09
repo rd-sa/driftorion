@@ -93,8 +93,11 @@
 							  </header>
 							  <div style="text-align: center;">
 							    <h3>Last Updated: 7/8</h3>
-							    <details>
-							      <summary style="cursor: pointer; font-weight: bold; margin-bottom: 10px;">Click to Show Badge Winners</summary>
+							    
+							    <details id="badge-details">
+							      <summary id="badge-summary" style="cursor: pointer; font-weight: bold; margin-bottom: 10px;">
+							        Click to Show Badge Winners
+							      </summary>
 							      <ul style="
 							        list-style-position: inside;
 							        padding-left: 0;
@@ -122,6 +125,19 @@
 							    </details>
 							  </div>
 							</section>
+							
+							<script>
+							  const details = document.getElementById("badge-details");
+							  const summary = document.getElementById("badge-summary");
+							
+							  details.addEventListener("toggle", () => {
+							    if (details.open) {
+							      summary.textContent = "Click to Hide Badge Winners";
+							    } else {
+							      summary.textContent = "Click to Show Badge Winners";
+							    }
+							  });
+							</script>
 
 
 						
