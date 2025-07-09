@@ -84,53 +84,65 @@
 							    map.fitBounds(bounds);
 							  });
 							</script>
-						        <div style="text-align: center;"> 
-							    <details id="map-details">
-							      <summary id="map-summary" style="cursor: pointer; font-weight: bold; margin-bottom: 10px;">
-							        Click to Show Map Key
-							      </summary>
-							      <ol style="
-							        list-style-position: inside;
-							        padding-left: 0;
-							        display: inline-block;
-							        text-align: left;
-							        columns: 2;
-							        column-gap: 40px;
-							        margin-top: 10px;
-							      ">
-							        <li>Skip n Hop</li>
-							        <li>Not An Intro</li>
-							        <li>Delicate Carves</li>
-							        <li>Rock To Metal</li>
-							        <li>Initiation</li>
-							        <li>Trap Door</li>
-							        <li>Roof Loop</li>
-							        <li>Ceilyin</li>
-							        <li>Ceilyang</li>
-							        <li>Wall Carve</li>
-							        <li>Evil Smile</li>
-							        <li>Attempt Flight</li>
-							        <li>That's A Gap</li>
-							        <li>Window Hall</li>
-								<li>Lock n Load</li>
-								<li>Rebound</li>
-								<li>Jungle Gym Puzzle</li>
-								<li>Laser Line</li>
-								<li>Arch Way</li>
-								<li>Roof Crack</li>
-								<li>Cross the Gym</li>
-								<li>Drop Loop</li>
-								<li>Drop'in Downcarve</li>
-								<li>Freefall</li>
-								<li>Stalagnation 16</li>
-								<li>Mt. Leap</li>
-								<li>Stick to Seam</li>
-								<li>The Intro</li>
-								<li>Not So Direct</li>
-								<li>Green Spiral</li>
-							      </ol>
-							    </details>
-							  </div>
+							<div style="text-align: center;"> 
+							  <details id="map-details">
+							    <summary id="map-summary" style="cursor: pointer; font-weight: bold; margin-bottom: 10px;">
+							      <strong>Click to Show Map Key</strong>
+							    </summary>
+							
+							    <ol class="map-key-list">
+							      <li>Skip n Hop</li>
+							      <li>Not An Intro</li>
+							      <li>Delicate Carves</li>
+							      <li>Rock To Metal</li>
+							      <li>Initiation</li>
+							      <li>Trap Door</li>
+							      <li>Roof Loop</li>
+							      <li>Ceilyin</li>
+							      <li>Ceilyang</li>
+							      <li>Wall Carve</li>
+							      <li>Evil Smile</li>
+							      <li>Attempt Flight</li>
+							      <li>That's A Gap</li>
+							      <li>Window Hall</li>
+							      <li>Lock n Load</li>
+							      <li>Rebound</li>
+							      <li>Jungle Gym Puzzle</li>
+							      <li>Laser Line</li>
+							      <li>Arch Way</li>
+							      <li>Roof Crack</li>
+							      <li>Cross the Gym</li>
+							      <li>Drop Loop</li>
+							      <li>Drop'in Downcarve</li>
+							      <li>Freefall</li>
+							      <li>Stalagnation 16</li>
+							      <li>Mt. Leap</li>
+							      <li>Stick to Seam</li>
+							      <li>The Intro</li>
+							      <li>Not So Direct</li>
+							      <li>Green Spiral</li>
+							    </ol>
+							  </details>
+							</div>
+							
+							<style>
+							  .map-key-list {
+							    list-style-position: inside;
+							    padding-left: 0;
+							    display: inline-block;
+							    text-align: left;
+							    column-count: 2;
+							    column-gap: 40px;
+							    margin-top: 10px;
+							    max-width: 800px;
+							  }
+							
+							  @media (max-width: 768px) {
+							    .map-key-list {
+							      column-count: 1;
+							    }
+							  }
+							</style>
 							
 							<script>
 							  const details = document.getElementById("map-details");
@@ -144,6 +156,7 @@
 							    }
 							  });
 							</script>
+
 
 
 
