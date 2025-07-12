@@ -7,9 +7,9 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
   <noscript><link rel="stylesheet" href="{{ url_for('static', filename='css/noscript.css') }}" /></noscript>
   <link rel="icon" href="{{ url_for('static', filename='images/favicon.png') }}">
-  <!-- Custom Styles for Weekly Challenges -->
+  
   <style>
-    /* Divider between challenges */
+    
     #weekly-challenges .content details {
       border-bottom: 1px solid #ccc;
       padding: 0.75em 0;
@@ -18,7 +18,7 @@
       border-bottom: none;
     }
 
-    /* Side-by-side media */
+    
     .media-pair {
       display: flex;
       flex-wrap: wrap;
@@ -31,7 +31,7 @@
       flex: 1 1 300px;
     }
 
-    /* Video fluid */
+    
     .video-container video {
       display: block;
       width: 100%;
@@ -39,7 +39,7 @@
       border-radius: 4px;
     }
 
-    /* Image styling; height will be set via JS */
+   
     .image-container {
       display: flex;
       justify-content: center;
@@ -49,11 +49,11 @@
     .image-container img {
       display: block;
       width: auto;
-      height: auto; /* overridden by JS */
+      height: auto; 
       border-radius: 4px;
     }
 
-    /* Video credit text */
+    
     .video-credit {
       font-size: 0.85rem;
       color: #666;
@@ -61,7 +61,7 @@
       margin-top: 0.5rem;
     }
 
-    /* Responsive: stack on small screens and center image */
+    
     @media (max-width: 768px) {
       .media-pair {
         flex-direction: column;
@@ -82,7 +82,7 @@
   <div id="wrapper">
     <h1></h1>
 
-    <!-- Main -->
+    
     <div id="main">
       <section id="weekly-challenges" class="main special">
         <header class="major">
@@ -375,7 +375,7 @@
       </section>
     </div>
 
-    <!-- Footer -->
+    
     <footer id="footer">
       <section>
         <h2>Join the Community</h2>
@@ -389,7 +389,7 @@
 
   </div>
 
-  <!-- Existing scripts -->
+  
   <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
   <script src="{{ url_for('static', filename='js/jquery.scrollex.min.js') }}"></script>
   <script src="{{ url_for('static', filename='js/jquery.scrolly.min.js') }}"></script>
@@ -398,7 +398,7 @@
   <script src="{{ url_for('static', filename='js/util.js') }}"></script>
   <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
-  <!-- Sync image height to video height -->
+  
   <script>
     function syncImageToVideo(pair) {
       const video = pair.querySelector('video');
