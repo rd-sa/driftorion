@@ -1,1 +1,425 @@
-s
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Weekly Challenges</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+	<noscript><link rel="stylesheet" href="{{ url_for('static', filename='css/noscript.css') }}" /></noscript>
+	<link rel="icon" href="{{ url_for('static', filename='images/favicon.png') }}">
+  <!-- Custom Styles for Weekly Challenges -->
+  <style>
+    /* Divider between challenges */
+    #weekly-challenges .content details {
+      border-bottom: 1px solid #ccc;
+      padding: 0.75em 0;
+    }
+    #weekly-challenges .content details:last-child {
+      border-bottom: none;
+    }
+
+    /* Side-by-side media */
+    .media-pair {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 10px;
+      align-items: flex-start;
+    }
+    .media-pair .video-container,
+    .media-pair .image-container {
+      flex: 1 1 300px;
+    }
+
+    /* Video fluid */
+    .video-container video {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+
+    /* Image styling; height will be set via JS */
+    .image-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    .image-container img {
+      display: block;
+      width: auto;
+      height: auto; /* overridden by JS */
+      border-radius: 4px;
+    }
+
+    /* Video credit text */
+    .video-credit {
+      font-size: 0.85rem;
+      color: #666;
+      text-align: center;
+      margin-top: 0.5rem;
+    }
+
+    /* Responsive: stack on small screens and center image */
+    @media (max-width: 768px) {
+      .media-pair {
+        flex-direction: column;
+      }
+      .media-pair .video-container,
+      .media-pair .image-container {
+        flex: none;
+        width: 100%;
+      }
+      .image-container {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body class="is-preload">
+
+  <div id="wrapper">
+    <h1></h1>
+
+    <!-- Main -->
+    <div id="main">
+      <section id="weekly-challenges" class="main special">
+        <header class="major">
+          <h2>Weekly Challenges</h2>
+          <p>Click any challenge below to view it's details.</p>
+        </header>
+        <div class="content">
+
+          <details>
+            <summary>Weekly Challenge #20</summary>
+            <p>Steel beams and boulders.</p>
+            <div class="media-pair">
+              <div class="video-container">
+                <video src="images/week20.mp4') }}" controls></video>
+              </div>
+              <div class="image-container">
+                <img src="images/polkapattern.png') }}" alt="Challenge Reward">
+              </div>
+            </div>
+            <p class="video-credit">Video credit: MrStick62</p>
+          </details>
+
+          <details>
+            <summary>Weekly Challenge #19</summary>
+            <p>Reverse wall carves and ice sliding.</p>
+            <div class="media-pair">
+              <div class="video-container">
+                <video src="images/week19.png') }}" controls></video>
+              </div>
+              <div class="image-container">
+                <img src="images/butterpattern.png') }}" alt="Challenge Reward">
+              </div>
+            </div>
+            <p class="video-credit">Video credit: MrStick62</p>
+          </details>
+
+          <details>
+            <summary>Weekly Challenge #18</summary>
+            <p>Ceiling carves and skinny planks.</p>
+            <div class="media-pair">
+              <div class="video-container">
+                <video src="images/week18.mp4') }}" controls></video>
+              </div>
+              <div class="image-container">
+                <img src="images/squintoptics.png') }}" alt="Challenge Reward">
+              </div>
+            </div>
+            <p class="video-credit">Video credit: MrStick62</p>
+          </details>
+
+          <details>
+            <summary>Weekly Challenge #17</summary>
+            <p>Ceiling carving, wall carving, and floor carving at high speeds.</p>
+            <div class="media-pair">
+              <div class="video-container">
+                <video src="images/week17.mp4') }}" controls></video>
+              </div>
+              <div class="image-container">
+                <img src="images/circuitpattern.png') }}" alt="Challenge Reward">
+              </div>
+            </div>
+            <p class="video-credit">Video credit: MrStick62</p>
+          </details>
+
+          <details>
+            <summary>Weekly Challenge #16</summary>
+            <p>Snake carves upwards and downwards.</p>
+            <div class="media-pair">
+              <div class="video-container">
+                <video src="images/week16.mp4') }}" controls></video>
+              </div>
+              <div class="image-container">
+                <img src="images/angryoptics.png') }}" alt="Challenge Reward">
+              </div>
+            </div>
+            <p class="video-credit">Video credit: MrStick62</p>
+          </details>
+
+          <details>
+            <summary>Weekly Challenge #15</summary>
+            <p>Climbing, wall running, and optional tassy's & reverse tassy's.</p>
+            <div class="media-pair">
+              <div class="video-container">
+                <video src="images/week15.mp4') }}" controls></video>
+              </div>
+              <div class="image-container">
+                <img src="images/flamepattern.png') }}" alt="Challenge Reward">
+              </div>
+            </div>
+            <p class="video-credit">Video credit: MrStick62</p>
+          </details>
+
+          <details>
+            <summary>Weekly Challenge #14</summary>
+            <p>Loop carves—enough said.</p>
+            <div class="media-pair">
+              <div class="video-container">
+                <video src="images/week14.mp4') }}" controls></video>
+              </div>
+              <div class="image-container">
+                <img src="images/rushpattern.png') }}" alt="Challenge Reward">
+              </div>
+            </div>
+            <p class="video-credit">Video credit: MrStick62</p>
+          </details>
+
+          <details>
+            <summary>Weekly Challenge #13</summary>
+            <p>A combination of pinch carves, ceiling carves, long jumps, and a zero-g ceiling carve.</p>
+            <div class="media-pair">
+              <div class="video-container">
+                <video src="images/week13.mp4') }}" controls></video>
+              </div>
+              <div class="image-container">
+                <img src="images/sleepyoptics.png') }}" alt="Challenge Reward">
+              </div>
+            </div>
+            <p class="video-credit">Video credit: MrStick62</p>
+          </details>
+
+          <details>
+            <summary>Weekly Challenge #12</summary>
+            <p>Dodge obstacles at high speeds in order it hit a final high jump.</p>
+            <div class="media-pair">
+              <div class="video-container">
+                <video src="images/week12.mp4') }}" controls></video>
+              </div>
+              <div class="image-container">
+                <img src="images/hushpattern.png') }}" alt="Challenge Reward">
+              </div>
+            </div>
+            <p class="video-credit">Video credit: MrStick62</p>
+          </details>
+
+          <details>
+            <summary>Weekly Challenge #11</summary>
+            <p>Optional tassy, then wall carves into ceiling carves.</p></p>
+            <div class="media-pair">
+              <div class="video-container">
+                <video src="images/week11.mp4') }}" controls></video>
+              </div>
+              <div class="image-container">
+                <img src="images/karatoptics.png') }}" alt="Challenge Reward">
+              </div>
+            </div>
+            <p class="video-credit">Video credit: MrStick62</p>
+          </details>
+
+          <details>
+            <summary>Weekly Challenge #10</summary>
+            <p>Cube jumps—very easy.</p>
+            <div class="media-pair">
+              <div class="video-container">
+                <video src="images/week10.mp4') }}" controls></video>
+              </div>
+              <div class="image-container">
+                <img src="images/camopattern.png') }}" alt="Challenge Reward">
+              </div>
+            </div>
+            <p class="video-credit">Video credit: MrStick62</p>
+          </details>
+
+          <details>
+            <summary>Weekly Challenge #9</summary>
+            <p>High vertical climb and a big boulder.</p>
+            <div class="media-pair">
+              <div class="video-container">
+                <video src="images/week9.mp4') }}" controls></video>
+              </div>
+              <div class="image-container">
+                <img src="images/tigerpattern.png') }}" alt="Challenge Reward">
+              </div>
+            </div>
+            <p class="video-credit">Video credit: MrStick62</p>
+          </details>
+
+          <details>
+            <summary>Weekly Challenge #8</summary>
+            <p>Corner carves and a long jump.</p>
+            <div class="media-pair">
+              <div class="video-container">
+                <video src="images/week8.mp4') }}" controls></video>
+              </div>
+              <div class="image-container">
+                <img src="images/sparklepattern.png') }}" alt="Challenge Reward">
+              </div>
+            </div>
+            <p class="video-credit">Video credit: MrStick62</p>
+          </details>
+
+          <details>
+            <summary>Weekly Challenge #7</summary>
+            <p>Pinch carving with hidden coins.</p>
+            <div class="media-pair">
+              <div class="video-container">
+                <video src="images/week7.mp4') }}" controls></video>
+              </div>
+              <div class="image-container">
+                <img src="images/lightningpattern.png') }}" alt="Challenge Reward">
+              </div>
+            </div>
+            <p class="video-credit">Video credit: MrStick62</p>
+          </details>
+
+          <details>
+            <summary>Weekly Challenge #6</summary>
+            <p>Zero gravity carving.</p>
+            <div class="media-pair">
+              <div class="video-container">
+                <video src="images/week6.mp4') }}" controls></video>
+              </div>
+              <div class="image-container">
+                <img src="images/flamepattern.png') }}" alt="Challenge Reward">
+              </div>
+            </div>
+            <p class="video-credit">Video credit: MrStick62</p>
+          </details>
+
+          <details>
+            <summary>Weekly Challenge #5</summary>
+            <p>Wall carves, downward wall carves, and long jumps.</p>
+            <div class="media-pair">
+              <div class="video-container">
+                <video src="images/week5.mp4') }}" controls></video>
+              </div>
+              <div class="image-container">
+                <img src="images/camopattern.png') }}" alt="Challenge Reward">
+              </div>
+            </div>
+            <p class="video-credit">Video credit: MrStick62</p>
+          </details>
+
+          <details>
+            <summary>Weekly Challenge #4</summary>
+            <p>Jump through tiny gaps and holes.</p>
+            <div class="media-pair">
+              <div class="video-container">
+                <video src="images/week4.mp4') }}" controls></video>
+              </div>
+              <div class="image-container">
+                <img src="images/tigerpattern.png') }}" alt="Challenge Reward">
+              </div>
+            </div>
+            <p class="video-credit">Video credit: MrStick62</p>
+          </details>
+
+          <details>
+            <summary>Weekly Challenge #3</summary>
+            <p>Floor carves, snake carves, wall carves, and ceiling carves.</p>
+            <div class="media-pair">
+              <div class="video-container">
+                <video src="images/week3.mp4') }}" controls></video>
+              </div>
+              <div class="image-container">
+                <img src="images/flamepattern.png') }}" alt="Challenge Reward">
+              </div>
+            </div>
+            <p class="video-credit">Video credit: MrStick62</p>
+          </details>
+
+          <details>
+            <summary>Weekly Challenge #2</summary>
+            <p>With many interesting sections, this is a long challenge that uses many mechanics.</p>
+            <div class="media-pair">
+              <div class="video-container">
+                <video src="images/week2.mp4') }}" controls></video>
+              </div>
+              <div class="image-container">
+                <img src="images/camopattern.png') }}" alt="Challenge Reward">
+              </div>
+            </div>
+            <p class="video-credit">Video credit: MrStick62</p>
+          </details>
+
+          <details>
+            <summary>Weekly Challenge #1</summary>
+            <p>Two wall carves and a jump—pretty simple.</p>
+            <div class="media-pair">
+              <div class="video-container">
+                <video src="images/week1.mp4') }}" controls></video>
+              </div>
+              <div class="image-container">
+                <img src="images/tigerpattern.png') }}" alt="Challenge Reward">
+              </div>
+            </div>
+            <p class="video-credit">Video credit: MrStick62</p>
+          </details>
+
+        </div>
+      </section>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+      <section>
+        <h2>Join the Community</h2>
+        <p>Hello, my name is liljohn, and it is my goal to become a parkour moderator and/or event manager. I made this site to contain information that I found to be useful. Let me know what other recources I could add to make this site even better!</p>
+        <ul class="actions">
+          <li><a href="parkour') }}" class="button">Return Home</a></li>
+        </ul>
+      </section>
+      <p class="copyright">&copy; Orion Drift Parkour Community. Site made by liljohn.</p>
+    </footer>
+
+  </div>
+
+  <!-- Existing scripts -->
+  <script src="assets/js/jquery.min.js') }}"></script>
+  <script src="assets/js/jquery.scrollex.min.js') }}"></script>
+  <script src="assets/js/jquery.scrolly.min.js') }}"></script>
+  <script src="assets/js/browser.min.js') }}"></script>
+  <script src="assets/js/breakpoints.min.js') }}"></script>
+  <script src="assets/js/util.js') }}"></script>
+  <script src="assets/js/main.js') }}"></script>
+
+  <!-- Sync image height to video height -->
+  <script>
+    function syncImageToVideo(pair) {
+      const video = pair.querySelector('video');
+      const img   = pair.querySelector('img');
+      function update() {
+        const h = video.getBoundingClientRect().height;
+        img.style.height = h + 'px';
+        img.style.width  = 'auto';
+      }
+      if (video.readyState >= 1) update();
+      else video.addEventListener('loadedmetadata', update);
+
+      const details = pair.closest('details');
+      details.addEventListener('toggle', () => {
+        if (details.open) update();
+      });
+
+      window.addEventListener('resize', update);
+    }
+
+    document.querySelectorAll('.media-pair').forEach(syncImageToVideo);
+  </script>
+</body>
+</html>
