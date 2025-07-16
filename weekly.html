@@ -422,5 +422,17 @@
 
     document.querySelectorAll('.media-pair').forEach(syncImageToVideo);
   </script>
+  <script>
+    const challengeDetails = document.querySelectorAll('#weekly-challenges details');
+    challengeDetails.forEach(detail => {
+      detail.addEventListener('toggle', () => {
+        if (detail.open) {
+          challengeDetails.forEach(other => {
+            if (other !== detail) other.open = false;
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
