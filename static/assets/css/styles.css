@@ -50,9 +50,20 @@ header {
 }
 
 .logo {
+  display: flex;
+  flex-direction: column;
+  color: var(--primary);
+}
+
+.logo .title {
   font-size: 1.75rem;
   font-weight: 600;
-  color: var(--primary);
+}
+
+.logo .subtitle {
+  font-size: 0.875rem;
+  color: #ccc;
+  margin-top: 0.1rem;
 }
 
 .nav ul {
