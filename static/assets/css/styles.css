@@ -33,11 +33,9 @@ a {
 }
 
 header {
-  background: var(--secondary);
-  padding: var(--gap) 0;
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  background: linear-gradient(90deg, #121212, #1e1e1e);
+  border-bottom: 2px solid var(--primary);
+  box-shadow: 0 2px 10px rgba(0, 209, 178, 0.3);
 }
 
 .nav {
