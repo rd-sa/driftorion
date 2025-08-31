@@ -29,7 +29,11 @@ a {
 .container {
   max-width: 1140px;
   margin: 0 auto;
-  padding: 80px 2rem var(--gap) 2rem;
+  padding: var(--gap) 2rem;
+}
+
+main {
+  padding-top: 80px;
 }
 
 header {
