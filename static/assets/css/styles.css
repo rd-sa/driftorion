@@ -51,7 +51,7 @@ header {
 
 .logo {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   color: var(--primary);
 }
 
