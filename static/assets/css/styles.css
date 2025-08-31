@@ -27,6 +27,7 @@ a {
 }
 
 .container {
+  padding-top: 80px;
   max-width: 1140px;
   margin: 0 auto;
   padding: var(--gap) 2rem;
