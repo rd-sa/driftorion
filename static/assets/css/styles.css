@@ -51,7 +51,8 @@ header {
 
 .logo {
   display: flex;
-  flex-direction: row;
+  align-items: baseline;
+  gap: 0.5rem;
   color: var(--primary);
 }
 
@@ -63,7 +64,6 @@ header {
 .logo .subtitle {
   font-size: 0.875rem;
   color: #ccc;
-  margin-top: 0.1rem;
 }
 
 .nav ul {
