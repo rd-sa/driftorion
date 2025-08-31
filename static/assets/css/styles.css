@@ -52,6 +52,7 @@ header {
 .logo .title {
   font-size: 1.75rem;
   font-weight: 600;
+  color: var(--primary);
 }
 
 .logo .subtitle {
@@ -67,6 +68,7 @@ header {
 
   .logo .title {
     font-size: 1.25rem;
+    color: var(--primary);
   }
 
   .logo .subtitle {
