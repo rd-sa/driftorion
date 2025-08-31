@@ -26,14 +26,14 @@ a {
   color: var(--primary);
 }
 
+main {
+  padding-top: 130px !important;
+}
+
 .container {
   max-width: 1140px;
   margin: 0 auto;
   padding: var(--gap) 2rem;
-}
-
-main {
-  padding-top: 130px;
 }
 
 header {
