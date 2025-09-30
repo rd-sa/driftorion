@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Hub - Orion Drift</title>
+    <link rel="stylesheet" href__="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href__="index.html" class="logo">
+                <div class="logo-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.25-2 5-2 5s3.75-.5 5-2c.625-.75 1-1.5 1-2.5A2.5 2.5 0 0 0 6 15c-1 0-1.75.375-2.5 1.5Z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2Z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+                </div>
+                <span class="logo-text">Orion Drift</span>
+            </a>
+            
+            <div class="nav-links">
+                <a href__="index.html" class="nav-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    <span>Home</span>
+                </a>
+                <a href__="timeline.html" class="nav-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <span>Timeline</span>
+                </a>
+                <a href__="community.html" class="nav-link active">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    <span>Community</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Background -->
+        <div class="starfield-bg">
+            <div class="gradient-overlay"></div>
+            <div class="stars-static"></div>
+        </div>
+
+        <!-- Community Content -->
+        <div class="community-page">
+            <div class="container">
+                <!-- Header -->
+                <div class="page-header">
+                    <h1 class="page-title gradient-purple">Community Hub</h1>
+                    <p class="page-subtitle">Connect with pilots and join official communities</p>
+                </div>
+
+                <div class="community-content">
+                    <!-- Discord Section -->
+                    <section class="discord-section">
+                        <div class="section-card">
+                            <div class="section-header">
+                                <div class="section-icon icon-discord">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+                                        <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
+                                    </svg>
+                                </div>
+                                <h2>Join the Discord</h2>
+                            </div>
+                            <p class="section-description">
+                                Connect with thousands of active pilots, share strategies, find racing teams,
+                                and stay updated on the latest news directly from the dev team.
+                            </p>
+
+                            <!-- Discord Widget Placeholder -->
+                            <div class="discord-widget-placeholder">
+                                <div class="placeholder-content">
+                                    <p>Replace this with your Discord server widget iframe:</p>
+                                    <code>&lt;iframe src="https://discord.com/widget?id=YOUR_SERVER_ID&theme=dark" 
+width="100%" height="500" allowtransparency="true" 
+frameborder="0"&gt;&lt;/iframe&gt;</code>
+                                </div>
+                            </div>
+
+                            <a href__="https://discord.gg/oriondrift" target="_blank" rel="noopener noreferrer" class="btn btn-discord btn-large">
+                                Open Discord
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+                            </a>
+                        </div>
+                    </section>
+
+                    <!-- Official Communities -->
+                    <section class="communities-section">
+                        <div class="section-header-simple">
+                            <div class="section-icon icon-cyan">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            </div>
+                            <h2>Official Communities</h2>
+                        </div>
+
+                        <div class="communities-grid">
+                            <!-- Golf/Club Community -->
+                            <div class="community-card">
+                                <div class="community-banner gradient-green">
+                                    <span class="community-emoji">⛳</span>
+                                </div>
+                                <div class="community-body">
+                                    <h3>Golf/Club Community</h3>
+                                    <p>Join the Orion Drift Golf Community, where golf enthusiasts come together to enjoy every aspect of the club district.</p>
+                                    <button class="btn btn-community-green">Join Community</button>
+                                </div>
+                            </div>
+
+                            <!-- The Clubhouse -->
+                            <div class="community-card">
+                                <div class="community-banner gradient-orange">
+                                    <span class="community-emoji">🏛️</span>
+                                </div>
+                                <div class="community-body">
+                                    <h3>The Clubhouse</h3>
+                                    <p>A dynamic gathering spot where drifters come together for casual events, friendly competition, and shared creativity.</p>
+                                    <button class="btn btn-community-orange">Join Community</button>
+                                </div>
+                            </div>
+
+                            <!-- Freerunners -->
+                            <div class="community-card">
+                                <div class="community-banner gradient-red">
+                                    <span class="community-emoji">🏃</span>
+                                </div>
+                                <div class="community-body">
+                                    <h3>Freerunners</h3>
+                                    <p>A dedicated zone for movement lovers to train, explore, and enjoy the thrill of parkour and climbing in a supportive environment.</p>
+                                    <button class="btn btn-community-red">Join Community</button>
+                                </div>
+                            </div>
+
+                            <!-- Passers Club -->
+                            <div class="community-card">
+                                <div class="community-banner gradient-blue">
+                                    <span class="community-emoji">🎯</span>
+                                </div>
+                                <div class="community-body">
+                                    <h3>Passers Club</h3>
+                                    <p>A moderated fleet focused on precision passing, strong coordination, and elevating team play with every game.</p>
+                                    <button class="btn btn-community-blue">Join Community</button>
+                                </div>
+                            </div>
+
+                            <!-- Rookies -->
+                            <div class="community-card">
+                                <div class="community-banner gradient-yellow">
+                                    <span class="community-emoji">🌟</span>
+                                </div>
+                                <div class="community-body">
+                                    <h3>Rookies</h3>
+                                    <p>A welcoming space for new drifters, offering structured guidance and coaching to help you grow fast and confidently.</p>
+                                    <button class="btn btn-community-yellow">Join Community</button>
+                                </div>
+                            </div>
+
+                            <!-- Competitive -->
+                            <div class="community-card">
+                                <div class="community-banner gradient-purple-alt">
+                                    <span class="community-emoji">🏆</span>
+                                </div>
+                                <div class="community-body">
+                                    <h3>Competitive</h3>
+                                    <p>Designed for ambitious drifters seeking ranked play, skill development, and a path to victory through serious competition.</p>
+                                    <button class="btn btn-community-purple">Join Community</button>
+                                </div>
+                            </div>
+
+                            <!-- Girls Who Drift -->
+                            <div class="community-card">
+                                <div class="community-banner gradient-pink">
+                                    <span class="community-emoji">💜</span>
+                                </div>
+                                <div class="community-body">
+                                    <h3>Girls Who Drift</h3>
+                                    <p>An inclusive space where girls and non-binary players can connect, drift, and enjoy the game in a supportive environment.</p>
+                                    <!-- No button for this community -->
+                                </div>
+                            </div>
+
+                            <!-- Grown Ups Club -->
+                            <div class="community-card">
+                                <div class="community-banner gradient-indigo">
+                                    <span class="community-emoji">🎮</span>
+                                </div>
+                                <div class="community-body">
+                                    <h3>Grown Ups Club</h3>
+                                    <p>A community for adult gamers looking for a chill, skill-focused atmosphere among other mature players.</p>
+                                    <button class="btn btn-community-indigo">Join Community</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Additional Info -->
+                        <div class="find-crew-box">
+                            <h3>Find Your Crew</h3>
+                            <p>
+                                Each community has its own Discord channel where you can connect with like-minded drifters,
+                                organize events, and grow together. Join multiple communities to experience all that Orion Drift has to offer!
+                            </p>
+                            <a href__="https://discord.gg/oriondrift" target="_blank" rel="noopener noreferrer" class="btn btn-timeline btn-large">
+                                Join Discord to Access Communities
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+                            </a>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>Orion Drift Community Hub • Not affiliated with official game development</p>
+                <p>Built by fans, for fans • All content belongs to their respective creators</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
