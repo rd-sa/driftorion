@@ -1,0 +1,347 @@
+import React from "react";
+import { ExternalLink, CheckCircle2, Wrench, Bug } from "lucide-react";
+
+export default function Timeline() {
+  const updates = [
+    {
+      version: "v0.8.2",
+      date: "January 15, 2025",
+      title: "Performance & Polish Update",
+      summary: "Major optimization pass and quality-of-life improvements based on community feedback.",
+      notes: [
+        { type: "add", text: "New drift trail customization options" },
+        { type: "add", text: "Added leaderboard filtering by ship class" },
+        { type: "tweak", text: "Improved frame pacing on lower-end systems" },
+        { type: "tweak", text: "Rebalanced boost regeneration across all ships" },
+        { type: "fix", text: "Fixed phantom collision issues in Nebula District" },
+        { type: "fix", text: "Resolved audio crackling during intense races" }
+      ],
+      image: "https://images.unsplash.com/photo-1614732414444-096e5f1122d5?w=800",
+      links: [
+        { text: "Full Patch Notes", url: "#" },
+        { text: "Discord Discussion", url: "#" }
+      ]
+    },
+    {
+      version: "v0.8.0",
+      date: "December 20, 2024",
+      title: "Nebula District Expansion",
+      summary: "Massive new racing district with branching paths and environmental hazards.",
+      notes: [
+        { type: "add", text: "5 new tracks in the Nebula District" },
+        { type: "add", text: "Dynamic weather system affecting grip" },
+        { type: "add", text: "New ship: Phantom-X with stealth boost" },
+        { type: "tweak", text: "Updated checkpoint visuals for clarity" },
+        { type: "fix", text: "Fixed respawn points on Solar Causeway" }
+      ],
+      youtube: "dQw4w9WgXcQ",
+      links: [
+        { text: "Patch Notes", url: "#" },
+        { text: "Dev Stream VOD", url: "#" }
+      ]
+    },
+    {
+      version: "v0.7.5",
+      date: "November 10, 2024",
+      title: "Ranked Season 2 Launch",
+      summary: "New competitive season with revised ranking system and rewards.",
+      notes: [
+        { type: "add", text: "Season 2 rewards and cosmetics" },
+        { type: "add", text: "New ranked tiers: Quantum and Supernova" },
+        { type: "tweak", text: "Adjusted SR gain/loss calculations" },
+        { type: "tweak", text: "Improved matchmaking for solo players" },
+        { type: "fix", text: "Fixed rank display issues in lobby" }
+      ],
+      image: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=800",
+      links: [
+        { text: "Season 2 Details", url: "#" }
+      ]
+    },
+    {
+      version: "v0.7.0",
+      date: "October 5, 2024",
+      title: "Multiplayer Overhaul",
+      summary: "Complete netcode rewrite for smoother online racing experience.",
+      notes: [
+        { type: "add", text: "New dedicated server infrastructure" },
+        { type: "add", text: "Spectator mode with free camera" },
+        { type: "tweak", text: "Reduced latency by ~40ms average" },
+        { type: "tweak", text: "Improved collision prediction" },
+        { type: "fix", text: "Fixed desync issues during boost phases" },
+        { type: "fix", text: "Resolved lobby connection timeouts" }
+      ],
+      links: [
+        { text: "Technical Blog Post", url: "#" },
+        { text: "Community Feedback Thread", url: "#" }
+      ]
+    },
+    {
+      version: "v0.6.0",
+      date: "August 15, 2024",
+      title: "Ship Customization System",
+      summary: "Unlock and customize ship liveries, trails, and effects.",
+      notes: [
+        { type: "add", text: "50+ unlockable liveries" },
+        { type: "add", text: "Customizable boost trails and engine effects" },
+        { type: "add", text: "Achievement system with rewards" },
+        { type: "tweak", text: "Updated garage UI for better navigation" }
+      ],
+      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800",
+      links: [
+        { text: "Customization Guide", url: "#" }
+      ]
+    }
+  ];
+
+  const getIcon = (type) => {
+    switch (type) {
+      case "add":
+        return <CheckCircle2 className="w-4 h-4 text-green-400" />;
+      case "tweak":
+        return <Wrench className="w-4 h-4 text-blue-400" />;
+      case "fix":
+        return <Bug className="w-4 h-4 text-yellow-400" />;
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-[#0a0e17] text-white">
+      {/* Background */}
+      <div className="fixed inset-0 z-0">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0e17] via-[#0d1520] to-[#0a0e17]" />
+        <div className="stars-static" />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 py-20">
+        <div className="container mx-auto px-6">
+          {/* Header */}
+          <div className="text-center mb-20">
+            <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+              Development Timeline
+            </h1>
+            <p className="text-xl text-gray-400">
+              Track every update and evolution of Orion Drift
+            </p>
+          </div>
+
+          {/* Timeline */}
+          <div className="max-w-5xl mx-auto relative">
+            {/* Center Line - Desktop */}
+            <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-cyan-500/50 via-blue-500/50 to-transparent">
+              <div className="absolute inset-0 blur-sm bg-gradient-to-b from-cyan-400/30 via-blue-400/30 to-transparent" />
+            </div>
+
+            {/* Left Line - Mobile */}
+            <div className="md:hidden absolute left-4 w-1 h-full bg-gradient-to-b from-cyan-500/50 via-blue-500/50 to-transparent">
+              <div className="absolute inset-0 blur-sm bg-gradient-to-b from-cyan-400/30 via-blue-400/30 to-transparent" />
+            </div>
+
+            {/* Timeline Items */}
+            <div className="space-y-16">
+              {updates.map((update, index) => (
+                <div
+                  key={index}
+                  className="flex items-start gap-8"
+                >
+                  {/* Desktop Layout - Alternating */}
+                  <div className={`hidden md:flex items-start gap-8 w-full ${
+                    index % 2 === 0 ? "flex-row" : "flex-row-reverse"
+                  }`}>
+                    {/* Spacer */}
+                    <div className="flex-1" />
+
+                    {/* Timeline Dot */}
+                    <div className="relative flex-shrink-0">
+                      <div className="w-6 h-6 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 shadow-[0_0_20px_rgba(0,217,255,0.6)] z-10 relative" />
+                      <div className="absolute inset-0 w-6 h-6 rounded-full bg-cyan-400/30 animate-ping" />
+                    </div>
+
+                    {/* Update Card */}
+                    <div className="flex-1">
+                      <div className="backdrop-blur-sm bg-white/5 border border-cyan-500/20 rounded-2xl p-6 hover:border-cyan-500/40 transition-all duration-300 hover:shadow-[0_0_40px_rgba(0,217,255,0.15)]">
+                        {/* Version & Date */}
+                        <div className="flex flex-wrap items-center gap-3 mb-3">
+                          <span className="px-4 py-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full text-sm font-bold shadow-[0_0_15px_rgba(0,217,255,0.4)]">
+                            {update.version}
+                          </span>
+                          <span className="text-gray-400 text-sm">{update.date}</span>
+                        </div>
+
+                        {/* Title */}
+                        <h3 className="text-2xl font-bold mb-2 text-cyan-300">
+                          {update.title}
+                        </h3>
+
+                        {/* Summary */}
+                        <p className="text-gray-300 mb-4">{update.summary}</p>
+
+                        {/* Notes */}
+                        <div className="space-y-2 mb-4">
+                          {update.notes.map((note, noteIndex) => (
+                            <div
+                              key={noteIndex}
+                              className="flex items-start gap-2 text-sm"
+                            >
+                              {getIcon(note.type)}
+                              <span className="text-gray-300">{note.text}</span>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* Media */}
+                        {update.image && (
+                          <img
+                            src={update.image}
+                            alt={update.title}
+                            className="w-full h-48 object-cover rounded-xl mb-4 border border-cyan-500/20"
+                          />
+                        )}
+
+                        {update.youtube && (
+                          <div className="relative pb-[56.25%] mb-4 rounded-xl overflow-hidden border border-cyan-500/20">
+                            <iframe
+                              src={`https://www.youtube.com/embed/${update.youtube}`}
+                              className="absolute inset-0 w-full h-full"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              allowFullScreen
+                            />
+                          </div>
+                        )}
+
+                        {/* Links */}
+                        {update.links && update.links.length > 0 && (
+                          <div className="flex flex-wrap gap-3">
+                            {update.links.map((link, linkIndex) => (
+                              <a
+                                key={linkIndex}
+                                href={link.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 text-sm transition-colors"
+                              >
+                                {link.text}
+                                <ExternalLink className="w-3 h-3" />
+                              </a>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Mobile Layout - All on Right */}
+                  <div className="md:hidden flex items-start gap-4 w-full">
+                    {/* Timeline Dot */}
+                    <div className="relative flex-shrink-0 mt-2">
+                      <div className="w-5 h-5 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 shadow-[0_0_15px_rgba(0,217,255,0.6)] z-10 relative" />
+                      <div className="absolute inset-0 w-5 h-5 rounded-full bg-cyan-400/30 animate-ping" />
+                    </div>
+
+                    {/* Update Card */}
+                    <div className="flex-1">
+                      <div className="backdrop-blur-sm bg-white/5 border border-cyan-500/20 rounded-2xl p-4 hover:border-cyan-500/40 transition-all duration-300">
+                        {/* Version & Date */}
+                        <div className="flex flex-wrap items-center gap-2 mb-3">
+                          <span className="px-3 py-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full text-xs font-bold shadow-[0_0_15px_rgba(0,217,255,0.4)]">
+                            {update.version}
+                          </span>
+                          <span className="text-gray-400 text-xs">{update.date}</span>
+                        </div>
+
+                        {/* Title */}
+                        <h3 className="text-xl font-bold mb-2 text-cyan-300">
+                          {update.title}
+                        </h3>
+
+                        {/* Summary */}
+                        <p className="text-gray-300 text-sm mb-3">{update.summary}</p>
+
+                        {/* Notes */}
+                        <div className="space-y-2 mb-3">
+                          {update.notes.map((note, noteIndex) => (
+                            <div
+                              key={noteIndex}
+                              className="flex items-start gap-2 text-xs"
+                            >
+                              {getIcon(note.type)}
+                              <span className="text-gray-300">{note.text}</span>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* Media */}
+                        {update.image && (
+                          <img
+                            src={update.image}
+                            alt={update.title}
+                            className="w-full h-40 object-cover rounded-xl mb-3 border border-cyan-500/20"
+                          />
+                        )}
+
+                        {update.youtube && (
+                          <div className="relative pb-[56.25%] mb-3 rounded-xl overflow-hidden border border-cyan-500/20">
+                            <iframe
+                              src={`https://www.youtube.com/embed/${update.youtube}`}
+                              className="absolute inset-0 w-full h-full"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              allowFullScreen
+                            />
+                          </div>
+                        )}
+
+                        {/* Links */}
+                        {update.links && update.links.length > 0 && (
+                          <div className="flex flex-wrap gap-2">
+                            {update.links.map((link, linkIndex) => (
+                              <a
+                                key={linkIndex}
+                                href={link.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1 text-cyan-400 hover:text-cyan-300 text-xs transition-colors"
+                              >
+                                {link.text}
+                                <ExternalLink className="w-3 h-3" />
+                              </a>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <style>{`
+        .stars-static {
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          background: transparent;
+          box-shadow: 
+            ${Array.from({ length: 150 }, () => 
+              `${Math.random() * 2000}px ${Math.random() * 2000}px #FFF`
+            ).join(', ')};
+        }
+
+        @keyframes ping {
+          75%, 100% {
+            transform: scale(2);
+            opacity: 0;
+          }
+        }
+
+        .animate-ping {
+          animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+      `}</style>
+    </div>
+  );
+}
