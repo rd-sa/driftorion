@@ -1377,3 +1377,13 @@ body {
   animation: spin 0.8s linear infinite;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
+
+.embed-toolbar .credits a {
+  color: #00d9ff;
+  text-decoration: none;
+  font-weight: 600;
+}
+.embed-toolbar .credits a:hover {
+  color: #22e4ff;
+  text-decoration: underline;
+}
