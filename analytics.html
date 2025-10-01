@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Analytics - Orion Drift</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">
+          <!-- keep your PNG or SVG -->
+          <img src="images/my-logo.png" alt="Orion Drift Logo">
+        </div>
+        <span class="logo-text">Orion Drift</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span>Home</span>
+        </a>
+        <a href="timeline.html" class="nav-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>Timeline</span>
+        </a>
+        <a href="community.html" class="nav-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>Community</span>
+        </a>
+        <a href="analytics.html" class="nav-link active">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 13v4"/><path d="M11 9v8"/><path d="M15 5v12"/></svg>
+          <span>Analytics</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Background -->
+  <div class="starfield-bg">
+    <div class="gradient-overlay"></div>
+    <!-- canvas starfield comes from script.js -->
+  </div>
+
+  <!-- Main -->
+  <main class="main-content">
+    <div class="container">
+      <div class="page-header" style="text-align:center; margin-bottom:2rem;">
+        <h1 class="page-title">Analytics Dashboard</h1>
+        <p class="page-subtitle">Embed of your analytics platform</p>
+      </div>
+
+      <div class="embed-card">
+        <div class="embed-wrapper" id="analyticsEmbedWrapper">
+          <iframe
+            id="analyticsFrame"
+            src="https://example-analytics.com/dashboard"  <!-- TODO: replace -->
+            loading="lazy"
+            allow="fullscreen"
+            referrerpolicy="no-referrer"
+            sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+          ></iframe>
+        </div>
+
+        <div class="embed-toolbar" aria-label="embed controls">
+          <div class="credits" id="embedCredits">
+            Analytics provided by <strong>Your Provider</strong>
+          </div>
+          <div class="controls">
+            <button class="btn btn-small" id="refreshBtn" type="button" title="Refresh (R)">
+              ⟳ Refresh
+            </button>
+            <button class="btn btn-small" id="fullscreenBtn" type="button" title="Fullscreen (F)">
+              ⤢ Fullscreen
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p>Orion Drift Community Hub • Not affiliated with official game development</p>
+        <p>Built by fans, for fans • All content belongs to their respective creators</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
