@@ -158,3 +158,60 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   resize();
   draw();
 })();
+
+(() => {
+  const frame = document.getElementById('analyticsFrame');
+  const wrapper = document.getElementById('analyticsEmbedWrapper');
+  const btnRefresh = document.getElementById('refreshBtn');
+  const btnFullscreen = document.getElementById('fullscreenBtn');
+
+  if (!frame || !wrapper || !btnRefresh || !btnFullscreen) return;
+
+  // Refresh: reload iframe src
+  const doRefresh = () => {
+    const src = frame.getAttribute('src');
+    if (!src) return;
+    btnRefresh.classList.add('btn--spinning');
+    // force reload with cache-bust
+    const bust = src.includes('?') ? '&' : '?';
+    frame.src = src + bust + 't=' + Date.now();
+    // stop spin when the iframe finishes loading (best-effort)
+    frame.addEventListener('load', () => {
+      btnRefresh.classList.remove('btn--spinning');
+    }, { once: true });
+  };
+
+  // Fullscreen: wrapper element (safe for cross-origin iframes)
+  const isFs = () => document.fullscreenElement === wrapper;
+  const updateFsUi = () => {
+    btnFullscreen.textContent = isFs() ? '⤢ Exit Fullscreen' : '⤢ Fullscreen';
+    btnFullscreen.title = isFs() ? 'Exit Fullscreen (F)' : 'Fullscreen (F)';
+  };
+
+  const toggleFullscreen = async () => {
+    try {
+      if (isFs()) {
+        await document.exitFullscreen();
+      } else {
+        await wrapper.requestFullscreen();
+      }
+      updateFsUi();
+    } catch (e) {
+      console.warn('Fullscreen failed:', e);
+    }
+  };
+
+  btnRefresh.addEventListener('click', doRefresh);
+  btnFullscreen.addEventListener('click', toggleFullscreen);
+  document.addEventListener('fullscreenchange', updateFsUi);
+
+  // Keyboard shortcuts: R = refresh, F = fullscreen
+  document.addEventListener('keydown', (e) => {
+    if (e.target && /input|textarea|select/i.test(e.target.tagName)) return;
+    if (e.key === 'r' || e.key === 'R') doRefresh();
+    if (e.key === 'f' || e.key === 'F') toggleFullscreen();
+  });
+
+  // initial label
+  updateFsUi();
+})();
