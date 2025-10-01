@@ -1288,3 +1288,10 @@ body {
   .timeline-content.left  > .update-card,
   .timeline-content.right > .update-card { flex: 0 1 auto; }
 }
+
+.logo-icon img {
+  max-width: 70%;      /* scale image down to fit */
+  max-height: 70%;
+  object-fit: contain; /* preserve proportions */
+  display: block;
+}
