@@ -457,17 +457,28 @@ body {
     position: absolute;
     width: 1px;
     height: 100%;
-    background: linear-gradient(180deg, rgba(0, 217, 255, 0.5) 0%, rgba(59, 130, 246, 0.5) 50%, transparent 100%);
+    background: linear-gradient(180deg, rgba(0, 217, 255, 0.5) 0%, rgba(59, 130, 246, 0.5) 50%, transparent 10%);
 }
 
 .timeline-line::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(0, 217, 255, 0.3) 0%, rgba(59, 130, 246, 0.3) 50%, transparent 100%);
+    background: linear-gradient(180deg, rgba(0, 217, 255, 0.3) 0%, rgba(59, 130, 246, 0.3) 50%, transparent 10%);
     filter: blur(4px);
 }
 
+.note { position: relative; padding-left: 1.25rem; }
+.note::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0.55rem;
+  width: 0.5rem; height: 0.5rem; border-radius: 50%;
+  background: #9ca3af;
+}
+.note-add::before { background: #4ade80; }   /* green */
+.note-tweak::before { background: #60a5fa; } /* blue  */
+.note-fix::before { background: #facc15; }   /* yellow */
 .timeline-line.desktop-only {
     display: none;
 }
