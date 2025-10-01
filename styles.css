@@ -1247,3 +1247,44 @@ body {
     box-shadow: 0 0 0 6px rgba(0, 217, 255, 0.1);
   }
 }
+
+@media (min-width: 768px) {
+  /* We don't need desktop padding on timeline-content anymore */
+  .timeline-content { padding-left: 0; padding-right: 0; }
+
+  /* Dot stays centered on the line (from earlier fix) */
+  .timeline-dot {
+    position: absolute;
+    left: 50%;
+    top: 1.5rem;                /* adjust if you want it lower/higher per item */
+    transform: translate(-50%, -50%);
+    width: 14px; height: 14px; aspect-ratio: 1/1; border-radius: 50%;
+    background: #0a0e17; border: 3px solid #3b82f6;
+    box-shadow: 0 0 0 6px rgba(0, 217, 255, 0.1);
+    z-index: 2;
+  }
+
+  /* IMPORTANT: Let the card size itself naturally… */
+  .timeline-content .update-card {
+    width: auto;                /* override any previous calc(50% - …) */
+    max-width: 680px;           /* cap so it never looks too wide */
+  }
+
+  /* …then push it fully to its side using a 50% margin off the center line */
+  .timeline-content.left  .update-card { 
+    margin-right: calc(50% + 2rem);   /* 2rem = gutter from the line */
+    margin-left: 0;
+  }
+  .timeline-content.right .update-card { 
+    margin-left:  calc(50% + 2rem); 
+    margin-right: 0;
+  }
+
+  /* Make sure flex doesn’t stretch the dot */
+  .timeline-content.left  > .timeline-dot,
+  .timeline-content.right > .timeline-dot { flex: 0 0 auto; }
+
+  /* Optional: if your earlier rule gave the card flex:1, neutralize it */
+  .timeline-content.left  > .update-card,
+  .timeline-content.right > .update-card { flex: 0 1 auto; }
+}
