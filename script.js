@@ -29,3 +29,132 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+(() => {
+  // ----- Config you can tweak -----
+  const STAR_DENSITY = 0.00025; // stars per px^2 (increase for more stars)
+  const STAR_SIZE_MIN = 0.6;    // in CSS pixels (before DPR scaling)
+  const STAR_SIZE_MAX = 1.8;
+  const SPEED_MIN = 0.02;       // px per frame (base drift)
+  const SPEED_MAX = 0.35;       // parallax-ish variation
+  const TWINKLE_AMPL = 0.35;    // 0..1 (alpha oscillation amplitude)
+  const TWINKLE_SPEED = 0.015;  // twinkle rate
+
+  // Find the background wrapper from your pages
+  const bg = document.querySelector('.starfield-bg');
+  if (!bg) return;
+
+  // Create/inject canvas
+  const canvas = document.createElement('canvas');
+  canvas.className = 'starfield-canvas';
+  // Put it just above the gradient and below content
+  // Your .starfield-bg already sits behind .main-content, so fixed is fine.
+  document.body.appendChild(canvas);
+
+  const ctx = canvas.getContext('2d');
+
+  // Sizing helpers
+  let dpr = Math.max(1, window.devicePixelRatio || 1);
+  let width = 0, height = 0;
+
+  let stars = [];
+  let tick = 0;
+
+  function rand(a, b) { return a + Math.random() * (b - a); }
+
+  function resize() {
+    dpr = Math.max(1, window.devicePixelRatio || 1);
+    width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+
+    canvas.width = Math.floor(width * dpr);
+    canvas.height = Math.floor(height * dpr);
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+
+    // Recreate stars based on viewport area (CSS px)
+    const targetCount = Math.floor(width * height * STAR_DENSITY);
+    stars = new Array(targetCount).fill(0).map(() => {
+      // position in CSS px
+      const x = Math.random() * width;
+      const y = Math.random() * height;
+
+      // radius in CSS px, then scale to device pixels for crispness
+      const rCss = rand(STAR_SIZE_MIN, STAR_SIZE_MAX);
+      const r = rCss * dpr;
+
+      // depth-ish speed
+      const v = rand(SPEED_MIN, SPEED_MAX);
+
+      // twinkle phase
+      const phase = Math.random() * Math.PI * 2;
+
+      // slightly blue-white variance
+      const tint = Math.random();
+      // light blue to warm white
+      const color = tint < 0.2 ? '#cfe8ff' : (tint > 0.85 ? '#fff7e6' : '#ffffff');
+
+      return { x, y, r, v, phase, color };
+    });
+  }
+
+  function draw() {
+    tick += 1;
+
+    // Clear with transparent so any page gradient shows through
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw stars
+    ctx.save();
+    ctx.scale(dpr, dpr); // from here, use CSS pixel coords
+    for (let i = 0; i < stars.length; i++) {
+      const s = stars[i];
+
+      // drift upward (like your original CSS animation)
+      s.y -= s.v;
+      if (s.y < -2) s.y = height + 2; // wrap to bottom
+
+      // slight horizontal drift for a natural feel
+      s.x += Math.sin((tick + i) * 0.001) * 0.05;
+      if (s.x < -2) s.x = width + 2;
+      if (s.x > width + 2) s.x = -2;
+
+      // twinkle alpha between (1 - TWINKLE_AMPL) and 1
+      const alpha = 1 - TWINKLE_AMPL * (0.5 + 0.5 * Math.sin(s.phase + tick * TWINKLE_SPEED));
+
+      // draw
+      ctx.globalAlpha = alpha;
+      ctx.fillStyle = s.color;
+      ctx.beginPath();
+      // draw a circle; r is already scaled to device pixels, but we scaled the ctx,
+      // so we need to convert back to CSS px for radius
+      ctx.arc(s.x, s.y, s.r / dpr, 0, Math.PI * 2);
+      ctx.fill();
+
+      // subtle glow
+      ctx.globalAlpha = alpha * 0.25;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, (s.r * 2.2) / dpr, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.restore();
+
+    requestAnimationFrame(draw);
+  }
+
+  // Handle resize/DPR changes
+  let resizeRaf;
+  const onResize = () => {
+    cancelAnimationFrame(resizeRaf);
+    resizeRaf = requestAnimationFrame(() => {
+      resize();
+    });
+  };
+  window.addEventListener('resize', onResize);
+  // Some browsers fire on zoom/DPR change via this media query
+  matchMedia(`(resolution: ${window.devicePixelRatio}dppx)`).addEventListener?.('change', onResize);
+
+  // Kick off
+  resize();
+  draw();
+})();
