@@ -1148,3 +1148,102 @@ body {
         display: none;
     }
 }
+
+.page-header { text-align: center; }  /* was `text-center` */
+
+.timeline-container {
+  position: relative; /* anchor for the absolute line/dots */
+}
+
+/* Make each item a positioning context so its dot can be placed relative to it */
+.timeline-item {
+  position: relative;
+  /* optional: extra vertical breathing room */
+  padding-top: 1.5rem;
+}
+
+/* Center the vertical line on desktop (already done, just ensure it's above) */
+@media (min-width: 768px) {
+  .timeline-line.desktop-only {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;                /* slightly thicker for visibility */
+    background: linear-gradient(180deg,
+      rgba(0, 217, 255, 0.6) 0%,
+      rgba(59, 130, 246, 0.6) 50%,
+      transparent 100%);
+  }
+}
+
+/* --- DOT: pin it to the center line on desktop --- */
+@media (min-width: 768px) {
+  .timeline-dot {
+    position: absolute;
+    left: 50%;
+    top: 1.5rem;               /* aligns the dot with the top of each card area */
+    transform: translate(-50%, -50%);
+    width: 14px;               /* fixed size prevents any flex/gap influence */
+    height: 14px;
+    aspect-ratio: 1 / 1;       /* belt-and-suspenders: stays perfectly round */
+    border-radius: 50%;
+    background: #0a0e17;       /* make center appear “cut out” if you prefer */
+    border: 3px solid #3b82f6; /* crisp ring that pops on dark bg */
+    box-shadow: 0 0 0 6px rgba(0, 217, 255, 0.1);
+    z-index: 2;                 /* above the line, below content hover glows */
+  }
+
+  /* optional: soften the animated ping so it doesn't read as stretch */
+  .timeline-dot::before {
+    inset: -2px;               /* grows from just outside the ring */
+    background: rgba(59, 130, 246, 0.25);
+  }
+}
+
+/* --- L/R card layout: keep content off the center line --- */
+@media (min-width: 768px) {
+  .timeline-content {
+    /* create room so cards don't collide with center line */
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  /* Keep each card to its half of the container */
+  .timeline-content.left .update-card,
+  .timeline-content.right .update-card {
+    width: calc(50% - 3rem);   /* half the container minus some gutter */
+    max-width: 680px;          /* just to avoid ultra-wide on big screens */
+  }
+
+  /* Left-side items: card lives on the left half */
+  .timeline-content.left {
+    justify-content: flex-end; /* pushes card to the left half */
+  }
+  .timeline-content.left .update-card {
+    margin-right: auto;
+    margin-left: 0;
+  }
+
+  /* Right-side items: card lives on the right half */
+  .timeline-content.right {
+    justify-content: flex-start; /* pushes card to the right half */
+  }
+  .timeline-content.right .update-card {
+    margin-left: auto;
+    margin-right: 0;
+  }
+}
+
+/* --- Mobile keeps your existing left rail --- */
+@media (max-width: 767px) {
+  .timeline-dot {
+    position: absolute;
+    left: 0.625rem; /* matches your mobile line at 1rem (visually centered in it) */
+    top: 0.5rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    aspect-ratio: 1 / 1;
+    border: 3px solid #3b82f6;
+    background: #0a0e17;
+    box-shadow: 0 0 0 6px rgba(0, 217, 255, 0.1);
+  }
+}
