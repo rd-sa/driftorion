@@ -1295,3 +1295,10 @@ body {
   object-fit: contain; /* preserve proportions */
   display: block;
 }
+
+.starfield-canvas {
+  position: fixed;  /* behind everything, covers viewport */
+  inset: 0;
+  z-index: 0;
+  pointer-events: none; /* don't block clicks */
+}
