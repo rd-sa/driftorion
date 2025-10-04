@@ -1398,3 +1398,28 @@ body {
   color: #22e4ff;
   text-decoration: underline;
 }
+
+.update-card .update-image {
+  width: 100%;             /* fill width of card */
+  height: auto;            /* scale height proportionally */
+  max-height: 250px;       /* limit height so it doesn’t eat too much space */
+  object-fit: cover;       /* crop to maintain aspect ratio */
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+/* Optionally wrap in container for fixed aspect ratio */
+.update-card .image-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;     /* for 16:9 ratio */
+  overflow: hidden;
+  border-radius: 0.75rem;
+}
+.update-card .image-wrapper img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
