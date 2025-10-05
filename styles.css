@@ -939,6 +939,23 @@ body {
     z-index: 1;
 }
 
+.community-icon {
+  position: relative;
+  z-index: 1;             /* above the dark overlay */
+  width: 72px;
+  height: 72px;
+  object-fit: contain;    /* keep aspect ratio */
+  image-rendering: auto;  /* keep logos crisp */
+  filter: drop-shadow(0 2px 10px rgba(0,0,0,0.35));
+}
+
+@media (min-width: 768px) {
+  .community-icon { width: 96px; height: 96px; }
+}
+
+/* If any old emoji spans are still present, hide them */
+.community-emoji { display: none; }
+
 .gradient-green {
     background: linear-gradient(135deg, #10b981 0%, #059669 100%);
 }
