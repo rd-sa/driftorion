@@ -957,7 +957,7 @@ body {
 .community-emoji { display: none; }
 
 .gradient-darkgrey {
-  background: linear-gradient(135deg, #0f1219 0%, #1c1f26 100%);
+  background: linear-gradient(135deg, #1e1e1e 0%, #2b2b2b 100%);
 }
 
 .gradient-green {
