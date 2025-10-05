@@ -476,9 +476,9 @@ body {
   width: 0.5rem; height: 0.5rem; border-radius: 50%;
   background: #9ca3af;
 }
-.note-add::before { background: #4ade80; }   /* green */
+.note-add::before { background: #60a5fa; }   /* green */
 .note-tweak::before { background: #60a5fa; } /* blue  */
-.note-fix::before { background: #facc15; }   /* yellow */
+.note-fix::before { background: #60a5fa; }   /* yellow */
 .timeline-line.desktop-only {
     display: none;
 }
