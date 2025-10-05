@@ -1499,3 +1499,16 @@ body {
     background-image: url("images/oldskybox.png");
   }
 }
+
+.footer-content a {
+  color: #00d9ff;        /* light blue */
+  text-decoration: none; /* no underline by default */
+  font-weight: 600;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.footer-content a:hover {
+  color: #22e4ff;        /* brighter blue on hover */
+  text-decoration: underline;
+  text-shadow: 0 0 8px rgba(0, 217, 255, 0.6); /* subtle glow */
+}
