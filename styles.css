@@ -1475,6 +1475,6 @@ body {
 /* (Optional) alternate mobile image */
 @media (max-width: 767px) {
   .starfield-bg .bg-image {
-    background-image: url("images/backgrounds/orion-sky-mobile.jpg");
+    background-image: url("images/oldskybox.png");
   }
 }
