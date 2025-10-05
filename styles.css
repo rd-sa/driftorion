@@ -956,6 +956,10 @@ body {
 /* If any old emoji spans are still present, hide them */
 .community-emoji { display: none; }
 
+.gradient-darkgrey {
+  background: linear-gradient(135deg, #0f1219 0%, #1c1f26 100%);
+}
+
 .gradient-green {
     background: linear-gradient(135deg, #10b981 0%, #059669 100%);
 }
