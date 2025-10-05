@@ -31,6 +31,14 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 (() => {
+  // ===== Initialize-once guard (prevents re-creating on iOS pull-to-refresh, bfcache, etc.) =====
+  if (window.__STARFIELD_INIT__) return;
+  window.__STARFIELD_INIT__ = true;
+
+  // Disable any potential parallax logic on coarse pointers (mobile) if you add any later
+  const isCoarse = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+  if (isCoarse) window.__DISABLE_STARFIELD_PARALLAX__ = true;
+
   // ----- Config you can tweak -----
   const STAR_DENSITY = 0.00025; // stars per px^2 (increase for more stars)
   const STAR_SIZE_MIN = 0.6;    // in CSS pixels (before DPR scaling)
@@ -44,14 +52,15 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   const bg = document.querySelector('.starfield-bg');
   if (!bg) return;
 
-  // Create/inject canvas
-  const canvas = document.createElement('canvas');
-  canvas.className = 'starfield-canvas';
-  // Put it just above the gradient and below content
-  // Your .starfield-bg already sits behind .main-content, so fixed is fine.
-  document.body.appendChild(canvas);
-
-  const ctx = canvas.getContext('2d');
+  // Create/inject canvas (re-use if it already exists)
+  let canvas = bg.querySelector('canvas.starfield-canvas') || document.querySelector('.starfield-canvas');
+  if (!canvas) {
+    canvas = document.createElement('canvas');
+    canvas.className = 'starfield-canvas';
+    // Append inside the starfield container so it sits under content
+    bg.appendChild(canvas);
+  }
+  const ctx = canvas.getContext('2d', { alpha: true });
 
   // Sizing helpers
   let dpr = Math.max(1, window.devicePixelRatio || 1);
@@ -152,7 +161,14 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   };
   window.addEventListener('resize', onResize);
   // Some browsers fire on zoom/DPR change via this media query
-  matchMedia(`(resolution: ${window.devicePixelRatio}dppx)`).addEventListener?.('change', onResize);
+  if (window.matchMedia) {
+    const mq = matchMedia(`(resolution: ${window.devicePixelRatio}dppx)`);
+    mq.addEventListener?.('change', onResize);
+  }
+  // On iOS/Safari bfcache restores, refresh sizes without re-initting
+  window.addEventListener('pageshow', (e) => {
+    if (e.persisted) onResize();
+  });
 
   // Kick off
   resize();
