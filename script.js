@@ -29,9 +29,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 
-// ==== STARFIELD (robust singleton, mobile-safe) ====
+// ==== STARFIELD (singleton, mobile-safe, smart resize) ====
 (() => {
-  // If we've already set up the starfield, bail.
+  // Prevent double init (bfcache, SPA nav, etc.)
   if (window.__starfield?.inited) return;
 
   const bg = document.querySelector('.starfield-bg');
@@ -39,13 +39,16 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
   // Config
   const isMobile = matchMedia('(max-width: 767px)').matches;
-  const BASE_DENSITY = isMobile ? 0.00018 : 0.00025; // fewer stars on mobile
-  const STAR_SIZE_MIN = 0.6;
-  const STAR_SIZE_MAX = 1.8;
-  const SPEED_MIN = 0.02;
-  const SPEED_MAX = 0.35;
-  const TWINKLE_AMPL = 0.35;
-  const TWINKLE_SPEED = 0.015;
+  const BASE_DENSITY   = isMobile ? 0.00018 : 0.00025; // fewer stars on mobile
+  const STAR_SIZE_MIN  = 0.6;
+  const STAR_SIZE_MAX  = 1.8;
+  const SPEED_MIN      = 0.02;
+  const SPEED_MAX      = 0.35;
+  const TWINKLE_AMPL   = 0.35;
+  const TWINKLE_SPEED  = 0.015;
+
+  // Rebuild threshold: small viewport “jiggles” (iOS URL bar) won’t rebuild
+  const MIN_REBUILD_DELTA = 80; // CSS px; raise to 120/160 if needed
 
   // Create (or reuse) canvas inside .starfield-bg so it sits over bg-image + gradient
   let canvas = bg.querySelector('canvas.starfield-canvas');
@@ -58,16 +61,27 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     canvas.style.pointerEvents = 'none';
     bg.appendChild(canvas);
   }
-  const ctx = canvas.getContext('2d');
+  const ctx = canvas.getContext('2d', { alpha: true });
 
   // State
   let dpr = Math.max(1, window.devicePixelRatio || 1);
-  let width = 0, height = 0;
+  // Use layout viewport sizes (stable when iOS address bar shows/hides)
+  let width  = document.documentElement.clientWidth;
+  let height = document.documentElement.clientHeight;
+
+  let lastW = width;
+  let lastH = height;
+  let lastDpr = dpr;
+
   let stars = [];
   let tick = 0;
   let rafId = null;
-  let halted = false;     // pause flag (visibility / P2R)
-  let dragging = false;   // user is touching (potential pull-to-refresh)
+
+  // pause/interaction flags
+  let halted   = false; // visibility / P2R pause
+  let dragging = false; // touch drag at top (pull-to-refresh)
+
+  // Mobile frame throttle
   let lastFrame = 0;
   const mobileFrameInterval = 1000 / 30; // ~30fps on mobile
 
@@ -88,17 +102,51 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
   }
 
-  function resize() {
-    dpr = Math.max(1, window.devicePixelRatio || 1);
-    width  = Math.max(document.documentElement.clientWidth,  window.innerWidth  || 0);
-    height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+  // Full rebuild: also resets canvas buffer (clears)
+  function rebuildCanvasAndStars() {
+    dpr    = Math.max(1, window.devicePixelRatio || 1);
+    width  = document.documentElement.clientWidth;
+    height = document.documentElement.clientHeight;
 
-    canvas.width = Math.floor(width * dpr);
+    canvas.width  = Math.floor(width * dpr);
     canvas.height = Math.floor(height * dpr);
-    canvas.style.width = width + 'px';
+    canvas.style.width  = width + 'px';
     canvas.style.height = height + 'px';
 
     buildStars();
+
+    lastW = width;
+    lastH = height;
+    lastDpr = dpr;
+  }
+
+  // Relayout only: stretch CSS size without clearing canvas or rebuilding stars
+  function relayoutOnly() {
+    const w = document.documentElement.clientWidth;
+    const h = document.documentElement.clientHeight;
+    canvas.style.width  = w + 'px';
+    canvas.style.height = h + 'px';
+    width = w;
+    height = h;
+    // NOTE: Do NOT touch canvas.width/height here (no clear!)
+  }
+
+  function smartResize() {
+    const newDpr = Math.max(1, window.devicePixelRatio || 1);
+    const w = document.documentElement.clientWidth;
+    const h = document.documentElement.clientHeight;
+
+    const dW = Math.abs(w - lastW);
+    const dH = Math.abs(h - lastH);
+    const dDpr = Math.abs(newDpr - lastDpr);
+
+    // Rebuild only on “meaningful” changes
+    if (dDpr > 0.001 || dW >= MIN_REBUILD_DELTA || dH >= MIN_REBUILD_DELTA) {
+      rebuildCanvasAndStars();
+    } else {
+      // Minor jiggle (iOS URL bar show/hide) → avoid clear + rebuild
+      relayoutOnly();
+    }
   }
 
   function draw(now) {
@@ -165,41 +213,49 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   }
 
   // Listeners (registered once)
+  let resizeRaf;
   const onResize = () => {
-    if (window.__starfield?.resizeQueued) return;
-    window.__starfield.resizeQueued = true;
-    requestAnimationFrame(() => {
-      window.__starfield.resizeQueued = false;
-      resize();
-    });
+    cancelAnimationFrame(resizeRaf);
+    resizeRaf = requestAnimationFrame(smartResize);
   };
+  window.addEventListener('resize', onResize, { passive: true });
 
-  const onVis = () => {
-    halted = document.hidden;
-    if (!halted) start();
-  };
+  // Some browsers expose DPR change via media query
+  const dprMQ = matchMedia?.(`(resolution: ${window.devicePixelRatio}dppx)`);
+  dprMQ?.addEventListener?.('change', onResize);
+
+  // On bfcache restore
+  window.addEventListener('pageshow', (e) => {
+    if (e.persisted) onResize();
+  }, { passive: true });
+
+  // visualViewport jitters → treat as minor relayout only
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', () => {
+      relayoutOnly();
+    }, { passive: true });
+  }
+
+  // Visibility & pull-to-refresh guards
+  const onVis = () => { halted = document.hidden; if (!halted) start(); };
+  document.addEventListener('visibilitychange', onVis);
 
   const onTouchStart = () => { dragging = true; };
-  const onTouchEnd = () => { dragging = false; };
-
-  window.addEventListener('resize', onResize, { passive: true });
-  matchMedia(`(resolution: ${window.devicePixelRatio}dppx)`)
-    .addEventListener?.('change', onResize);
-
-  document.addEventListener('visibilitychange', onVis);
-  // pull-to-refresh guard
+  const onTouchEnd   = () => { dragging = false; };
   window.addEventListener('touchstart', onTouchStart, { passive: true });
-  window.addEventListener('touchend', onTouchEnd, { passive: true });
-  window.addEventListener('touchcancel', onTouchEnd, { passive: true });
+  window.addEventListener('touchend',   onTouchEnd,   { passive: true });
+  window.addEventListener('touchcancel',onTouchEnd,   { passive: true });
 
   // Boot
-  resize();
+  rebuildCanvasAndStars();
   start();
 
-  // Expose singleton (optional debugging)
+  // Expose singleton for debugging
   window.__starfield = {
     inited: true,
-    start, stop, resize,
+    start, stop,
+    rebuild: rebuildCanvasAndStars,
+    relayout: relayoutOnly,
     setPaused(p) { halted = !!p; if (!halted) start(); },
   };
 })();
