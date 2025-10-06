@@ -1568,3 +1568,11 @@ body {
 .timeline-line::before {
   content: none; /* or display: none; */
 }
+
+.timeline-line {
+  background: #3b82f6 !important;  /* solid blue */
+}
+
+.timeline-line::before {
+  content: none !important;  /* remove overlay gradient */
+}
