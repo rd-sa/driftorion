@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // Get current page filename
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
   
-  // Update active nav link
   const navLinks = document.querySelectorAll('.nav-link');
   navLinks.forEach(link => {
     const linkPage = link.getAttribute('href');
@@ -14,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-// Smooth scroll for anchor links (if needed in future)
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     const href = this.getAttribute('href');
@@ -28,15 +25,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-
-// ==== STARFIELD (singleton, mobile-safe, smart resize, time-based motion) ====
 (() => {
   if (window.__starfield?.inited) return;
 
   const bg = document.querySelector('.starfield-bg');
   if (!bg) return;
 
-  // Config
   const isMobile = matchMedia('(max-width: 767px)').matches;
   const BASE_DENSITY   = isMobile ? 0.00018 : 0.00025;
   const STAR_SIZE_MIN  = 0.6;
@@ -48,7 +42,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
   const MIN_REBUILD_DELTA = 80;
 
-  // Canvas
   let canvas = bg.querySelector('canvas.starfield-canvas');
   if (!canvas) {
     canvas = document.createElement('canvas');
@@ -60,7 +53,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   }
   const ctx = canvas.getContext('2d', { alpha: true });
 
-  // State
   let dpr = Math.max(1, window.devicePixelRatio || 1);
   let width  = document.documentElement.clientWidth;
   let height = document.documentElement.clientHeight;
@@ -70,17 +62,14 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   let phaseTick = 0;
   let rafId = null;
 
-  // pause/interaction
   let halted   = false;
   let dragging = false;
 
-  // Time-based animation
   let lastTime = 0;
   const BASE_FRAME_MS = 1000 / 60;
   const MAX_DT_SCALE  = 2.5;
   const MIN_DT_SCALE  = 0.5;
 
-  // Mobile throttle
   let lastFrameForThrottle = 0;
   const mobileFrameInterval = 1000 / 30;
 
@@ -206,7 +195,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     rafId = null;
   }
 
-  // Listeners
   let resizeRaf;
   const onResize = () => {
     cancelAnimationFrame(resizeRaf);
@@ -236,7 +224,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   window.addEventListener('touchend',   onTouchEnd,   { passive: true });
   window.addEventListener('touchcancel',onTouchEnd,   { passive: true });
 
-  // Boot
   rebuildCanvasAndStars();
   start();
 
@@ -249,8 +236,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   };
 })();
 
-
-// ===== Analytics embed controls =====
 (() => {
   const frame = document.getElementById('analyticsFrame');
   const wrapper = document.getElementById('analyticsEmbedWrapper');
