@@ -1512,3 +1512,27 @@ body {
   text-decoration: underline;
   text-shadow: 0 0 8px rgba(0, 217, 255, 0.6); /* subtle glow */
 }
+
+.starfield-bg .bg-image {
+  background-image: url("images/oldskybox.png"); /* fixed path */
+  background-size: cover;
+  background-position: center; /* keep centered on larger screens */
+  background-repeat: no-repeat;
+}
+
+/* Mobile: anchor image to the left half */
+@media (max-width: 767px) {
+  .starfield-bg .bg-image {
+    background-position: left center;      /* <-- the key change */
+    filter: brightness(0.9) saturate(0.95); /* keep your existing mobile tone-down */
+  }
+
+  .starfield-bg .gradient-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(10,14,23,0.9) 0%,
+      rgba(13,21,32,0.7) 50%,
+      rgba(10,14,23,0.9) 100%
+    );
+  }
+}
