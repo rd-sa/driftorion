@@ -1536,3 +1536,35 @@ body {
     );
   }
 }
+
+/* Mobile: center dot on the left rail */
+@media (max-width: 767px) {
+  .timeline-line.mobile-only {
+    left: 1rem;          /* your existing rail position */
+    width: 2px;          /* make sure it's consistent */
+  }
+  .timeline-dot {
+    left: 1rem;          /* anchor to the rail */
+    top: 0.5rem;         /* your existing vertical offset */
+    transform: translate(-50%, -50%);
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 3px solid #3b82f6;
+    background: #0a0e17;
+    box-shadow: 0 0 0 6px rgba(0, 217, 255, 0.1);
+  }
+}
+
+/* Make the rail solid (no fade) on all viewports */
+.timeline-line {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 217, 255, 0.6) 0%,
+    rgba(59, 130, 246, 0.6) 100%
+  );
+}
+
+/* Kill the blurred overlay that also causes fade */
+.timeline-line::before {
+  content: none; /* or display: none; */
+}
