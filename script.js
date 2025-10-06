@@ -29,9 +29,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 
-// ==== STARFIELD (singleton, mobile-safe, smart resize) ====
+// ==== STARFIELD (singleton, mobile-safe, smart resize, time-based motion) ====
 (() => {
-  // Prevent double init (bfcache, SPA nav, etc.)
   if (window.__starfield?.inited) return;
 
   const bg = document.querySelector('.starfield-bg');
@@ -39,7 +38,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
   // Config
   const isMobile = matchMedia('(max-width: 767px)').matches;
-  const BASE_DENSITY   = isMobile ? 0.00018 : 0.00025; // fewer stars on mobile
+  const BASE_DENSITY   = isMobile ? 0.00018 : 0.00025;
   const STAR_SIZE_MIN  = 0.6;
   const STAR_SIZE_MAX  = 1.8;
   const SPEED_MIN      = 0.02;
@@ -47,45 +46,45 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   const TWINKLE_AMPL   = 0.35;
   const TWINKLE_SPEED  = 0.015;
 
-  // Rebuild threshold: small viewport “jiggles” (iOS URL bar) won’t rebuild
-  const MIN_REBUILD_DELTA = 80; // CSS px; raise to 120/160 if needed
+  const MIN_REBUILD_DELTA = 80;
 
-  // Create (or reuse) canvas inside .starfield-bg so it sits over bg-image + gradient
+  // Canvas
   let canvas = bg.querySelector('canvas.starfield-canvas');
   if (!canvas) {
     canvas = document.createElement('canvas');
     canvas.className = 'starfield-canvas';
-    canvas.style.position = 'absolute';
-    canvas.style.inset = '0';
-    canvas.style.zIndex = '2';
-    canvas.style.pointerEvents = 'none';
+    Object.assign(canvas.style, {
+      position: 'absolute', inset: '0', zIndex: '2', pointerEvents: 'none'
+    });
     bg.appendChild(canvas);
   }
   const ctx = canvas.getContext('2d', { alpha: true });
 
   // State
   let dpr = Math.max(1, window.devicePixelRatio || 1);
-  // Use layout viewport sizes (stable when iOS address bar shows/hides)
   let width  = document.documentElement.clientWidth;
   let height = document.documentElement.clientHeight;
-
-  let lastW = width;
-  let lastH = height;
-  let lastDpr = dpr;
+  let lastW = width, lastH = height, lastDpr = dpr;
 
   let stars = [];
-  let tick = 0;
+  let phaseTick = 0;
   let rafId = null;
 
-  // pause/interaction flags
-  let halted   = false; // visibility / P2R pause
-  let dragging = false; // touch drag at top (pull-to-refresh)
+  // pause/interaction
+  let halted   = false;
+  let dragging = false;
 
-  // Mobile frame throttle
-  let lastFrame = 0;
-  const mobileFrameInterval = 1000 / 30; // ~30fps on mobile
+  // Time-based animation
+  let lastTime = 0;
+  const BASE_FRAME_MS = 1000 / 60;
+  const MAX_DT_SCALE  = 2.5;
+  const MIN_DT_SCALE  = 0.5;
 
-  const rand = (a,b) => a + Math.random() * (b - a);
+  // Mobile throttle
+  let lastFrameForThrottle = 0;
+  const mobileFrameInterval = 1000 / 30;
+
+  const rand = (a, b) => a + Math.random() * (b - a);
 
   function buildStars() {
     const target = Math.floor(width * height * BASE_DENSITY);
@@ -102,7 +101,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
   }
 
-  // Full rebuild: also resets canvas buffer (clears)
   function rebuildCanvasAndStars() {
     dpr    = Math.max(1, window.devicePixelRatio || 1);
     width  = document.documentElement.clientWidth;
@@ -115,59 +113,56 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
     buildStars();
 
-    lastW = width;
-    lastH = height;
-    lastDpr = dpr;
+    lastW = width; lastH = height; lastDpr = dpr;
   }
 
-  // Relayout only: stretch CSS size without clearing canvas or rebuilding stars
   function relayoutOnly() {
     const w = document.documentElement.clientWidth;
     const h = document.documentElement.clientHeight;
     canvas.style.width  = w + 'px';
     canvas.style.height = h + 'px';
-    width = w;
-    height = h;
-    // NOTE: Do NOT touch canvas.width/height here (no clear!)
+    width = w; height = h;
   }
 
   function smartResize() {
     const newDpr = Math.max(1, window.devicePixelRatio || 1);
     const w = document.documentElement.clientWidth;
     const h = document.documentElement.clientHeight;
-
     const dW = Math.abs(w - lastW);
     const dH = Math.abs(h - lastH);
     const dDpr = Math.abs(newDpr - lastDpr);
 
-    // Rebuild only on “meaningful” changes
     if (dDpr > 0.001 || dW >= MIN_REBUILD_DELTA || dH >= MIN_REBUILD_DELTA) {
       rebuildCanvasAndStars();
     } else {
-      // Minor jiggle (iOS URL bar show/hide) → avoid clear + rebuild
       relayoutOnly();
     }
   }
 
   function draw(now) {
-    // Mobile throttle
+    if (!lastTime) lastTime = now;
+    let dt = now - lastTime;
+    lastTime = now;
+
     if (isMobile) {
-      if (!lastFrame) lastFrame = now;
-      const dt = now - lastFrame;
-      if (dt < mobileFrameInterval) {
+      if (!lastFrameForThrottle) lastFrameForThrottle = now;
+      const since = now - lastFrameForThrottle;
+      if (since < mobileFrameInterval) {
         rafId = requestAnimationFrame(draw);
         return;
       }
-      lastFrame = now;
+      lastFrameForThrottle = now;
     }
 
-    // Pause when hidden or while user is dragging at top (pull-to-refresh)
     if (halted || (dragging && window.scrollY <= 0)) {
       rafId = requestAnimationFrame(draw);
       return;
     }
 
-    tick += 1;
+    let dtScale = dt / BASE_FRAME_MS;
+    dtScale = Math.max(MIN_DT_SCALE, Math.min(MAX_DT_SCALE, dtScale));
+
+    phaseTick += dtScale;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.save();
@@ -176,16 +171,14 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     for (let i = 0; i < stars.length; i++) {
       const s = stars[i];
 
-      // upward drift
-      s.y -= s.v;
+      s.y -= s.v * dtScale;
       if (s.y < -2) s.y = height + 2;
 
-      // subtle horizontal sway
-      s.x += Math.sin((tick + i) * 0.001) * 0.05;
+      s.x += Math.sin((phaseTick + i) * 0.001) * 0.05 * dtScale;
       if (s.x < -2) s.x = width + 2;
       if (s.x > width + 2) s.x = -2;
 
-      const alpha = 1 - TWINKLE_AMPL * (0.5 + 0.5 * Math.sin(s.phase + tick * TWINKLE_SPEED));
+      const alpha = 1 - TWINKLE_AMPL * (0.5 + 0.5 * Math.sin(s.phase + phaseTick * TWINKLE_SPEED));
 
       ctx.globalAlpha = alpha;
       ctx.fillStyle = s.color;
@@ -205,6 +198,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
   function start() {
     if (rafId) cancelAnimationFrame(rafId);
+    lastTime = 0;
     rafId = requestAnimationFrame(draw);
   }
   function stop() {
@@ -212,7 +206,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     rafId = null;
   }
 
-  // Listeners (registered once)
+  // Listeners
   let resizeRaf;
   const onResize = () => {
     cancelAnimationFrame(resizeRaf);
@@ -220,23 +214,19 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   };
   window.addEventListener('resize', onResize, { passive: true });
 
-  // Some browsers expose DPR change via media query
   const dprMQ = matchMedia?.(`(resolution: ${window.devicePixelRatio}dppx)`);
   dprMQ?.addEventListener?.('change', onResize);
 
-  // On bfcache restore
   window.addEventListener('pageshow', (e) => {
     if (e.persisted) onResize();
   }, { passive: true });
 
-  // visualViewport jitters → treat as minor relayout only
   if (window.visualViewport) {
     window.visualViewport.addEventListener('resize', () => {
       relayoutOnly();
     }, { passive: true });
   }
 
-  // Visibility & pull-to-refresh guards
   const onVis = () => { halted = document.hidden; if (!halted) start(); };
   document.addEventListener('visibilitychange', onVis);
 
@@ -250,7 +240,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   rebuildCanvasAndStars();
   start();
 
-  // Expose singleton for debugging
   window.__starfield = {
     inited: true,
     start, stop,
@@ -261,7 +250,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 })();
 
 
-// ===== Analytics embed controls (unchanged) =====
+// ===== Analytics embed controls =====
 (() => {
   const frame = document.getElementById('analyticsFrame');
   const wrapper = document.getElementById('analyticsEmbedWrapper');
@@ -270,21 +259,17 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
   if (!frame || !wrapper || !btnRefresh || !btnFullscreen) return;
 
-  // Refresh: reload iframe src
   const doRefresh = () => {
     const src = frame.getAttribute('src');
     if (!src) return;
     btnRefresh.classList.add('btn--spinning');
-    // force reload with cache-bust
     const bust = src.includes('?') ? '&' : '?';
     frame.src = src + bust + 't=' + Date.now();
-    // stop spin when the iframe finishes loading (best-effort)
     frame.addEventListener('load', () => {
       btnRefresh.classList.remove('btn--spinning');
     }, { once: true });
   };
 
-  // Fullscreen: wrapper element (safe for cross-origin iframes)
   const isFs = () => document.fullscreenElement === wrapper;
   const updateFsUi = () => {
     btnFullscreen.textContent = isFs() ? '⤢ Exit Fullscreen' : '⤢ Fullscreen';
@@ -308,13 +293,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   btnFullscreen.addEventListener('click', toggleFullscreen);
   document.addEventListener('fullscreenchange', updateFsUi);
 
-  // Keyboard shortcuts: R = refresh, F = fullscreen
   document.addEventListener('keydown', (e) => {
     if (e.target && /input|textarea|select/i.test(e.target.tagName)) return;
     if (e.key === 'r' || e.key === 'R') doRefresh();
     if (e.key === 'f' || e.key === 'F') toggleFullscreen();
   });
 
-  // initial label
   updateFsUi();
 })();
