@@ -1,61 +1,76 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>404 - Page Not Found</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		<link rel="icon" href="images/favicon.png">
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Page Not Found - Drift Orion Directory</title>
+  <link rel="icon" type="image/png" href="images/odlogo.png">
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="../" class="logo">
+        <div class="logo-icon">
+          <img src="images/odlogo.png" alt="Orion Drift Logo">
+        </div>
+        <span class="logo-text">Orion Drift</span>
+      </a>
+      <div class="nav-links">
+        <a href="../" class="nav-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span>Home</span>
+        </a>
+        <a href="timeline" class="nav-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>Timeline</span>
+        </a>
+        <a href="communities" class="nav-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>Communities</span>
+        </a>
+        <a href="analytics" class="nav-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 13v4"/><path d="M11 9v8"/><path d="M15 5v12"/></svg>
+          <span>Station Analytics</span>
+        </a>
+      </div>
+    </div>
+  </nav>
 
-		
-			<div id="wrapper">
-				
-					<header id="header" class="alt">
-						<span class="logo"><img src="images/maxdrifterscircle.png" width= 84px; height=84px; alt="" /></span>
-						<h1>404 - Page Not Found</h1>
-					</header>
-				
-					<div id="main">
+  <!-- Background -->
+  <div class="starfield-bg">
+    <div class="bg-image" style="background-image:url('images/oldskybox.png?v=3');"></div>
+    <div class="gradient-overlay"></div>
+  </div>
 
-						
-							<section id="intro" class="main">
-                                                            <div class="spotlight" style="display: flex; justify-content: center; align-items: center;">
-                                                           
-                                                                <span class="image" style="flex-shrink: 0; text-align: center;">
-                                                                    <img src="images/cryface.jpg" alt="" style="max-width: 100%; height: auto;" />
-                                                                </span>
-                                                            </div>
-                                                        </section>
+  <!-- Main -->
+  <main class="main-content">
+    <div class="container" style="text-align:center; padding:4rem 1rem;">
+      <h1 class="page-title gradient-purple" style="font-size:4rem;">404</h1>
+      <p class="page-subtitle" style="margin-bottom:2rem;">Oops, this page drifted off course.</p>
 
+      <p style="margin-bottom:2rem;">
+        The page you’re looking for doesn’t exist or has been moved.<br>
+        Return to the <a href="../" class="link-highlight">home base</a> or explore the directory.
+      </p>
 
-						
-					</div>
+      <div class="action-buttons">
+        <a href="../" class="btn btn-timeline">Back to Home</a>
+      </div>
+    </div>
+  </main>
 
-				
-					<footer id="footer">
-						<section>
-							<h2>Join the Community</h2>
-							<p>Thank you for being part of our journey! Whether you're here to compete, learn, or just hang out, we’re thrilled to have you in our community. Stay tuned for upcoming events, team updates, and more. Let’s continue to push the limits of Orion Drift together and show the world what true skill looks like!</p>
-							<ul class="actions">
-								<li><a href="../" class="button">Return Home</a></li>
-							</ul>
-						</section>
-						<p class="copyright">&copy; Orion Drift Parkour Community. Site coded by liljohn.
-					</footer>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p>&copy; 2025 Drift Orion Directory</p>
+        <p>Made by <a href="https://discord.com/users/1272997581630341206" target="_blank" rel="noopener noreferrer"><strong>liljohn</strong></a> for your enjoyment.</p>
+      </div>
+    </div>
+  </footer>
 
-			</div>
-
-		
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-
-	</body>
+  <script src="script.js"></script>
+</body>
 </html>
