@@ -1,4 +1,3 @@
-/* Reset & Base Styles */
 * {
     margin: 0;
     padding: 0;
@@ -19,7 +18,6 @@ body {
     padding: 0 1.5rem;
 }
 
-/* Navigation */
 .navbar {
     position: fixed;
     top: 0;
@@ -123,14 +121,12 @@ body {
     box-shadow: 0 0 15px rgba(0, 217, 255, 0.3);
 }
 
-/* Main Content */
 .main-content {
     padding-top: 4rem;
     min-height: 100vh;
     position: relative;
 }
 
-/* Starfield Background */
 .starfield-bg {
     position: fixed;
     inset: 0;
@@ -151,26 +147,26 @@ body {
 }
 
 .stars {
-    box-shadow: 1791px 1432px #FFF, 324px 42px #FFF, 1004px 1312px #FFF, 1px 1948px #FFF, 538px 1281px #FFF, 1196px 1765px #FFF, /* ... add more stars ... */;
+    box-shadow: 1791px 1432px #FFF, 324px 42px #FFF, 1004px 1312px #FFF, 1px 1948px #FFF, 538px 1281px #FFF, 1196px 1765px #FFF, ;
     animation: animStar 50s linear infinite;
 }
 
 .stars2 {
     width: 2px;
     height: 2px;
-    box-shadow: 779px 1270px #FFF, 1499px 1897px #FFF, 1759px 1072px #FFF, /* ... add more stars ... */;
+    box-shadow: 779px 1270px #FFF, 1499px 1897px #FFF, 1759px 1072px #FFF, ;
     animation: animStar 100s linear infinite;
 }
 
 .stars3 {
     width: 3px;
     height: 3px;
-    box-shadow: 563px 990px #FFF, 1312px 752px #FFF, 1623px 1888px #FFF, /* ... add more stars ... */;
+    box-shadow: 563px 990px #FFF, 1312px 752px #FFF, 1623px 1888px #FFF, ;
     animation: animStar 150s linear infinite;
 }
 
 .stars-static {
-    box-shadow: 324px 1948px #FFF, 1196px 42px #FFF, 538px 1765px #FFF, /* ... add more stars ... */;
+    box-shadow: 324px 1948px #FFF, 1196px 42px #FFF, 538px 1765px #FFF, ;
 }
 
 @keyframes animStar {
@@ -178,7 +174,6 @@ body {
     to { transform: translateY(-2000px); }
 }
 
-/* Hero Section */
 .hero-section {
     position: relative;
     z-index: 10;
@@ -240,7 +235,6 @@ body {
     box-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
 }
 
-/* Buttons */
 .action-buttons {
     display: flex;
     flex-direction: column;
@@ -309,7 +303,6 @@ body {
     padding: 0.75rem 1.5rem;
 }
 
-/* Intro Box */
 .intro-box {
     max-width: 48rem;
     margin: 0 auto;
@@ -332,7 +325,6 @@ body {
     font-weight: 600;
 }
 
-/* Feature Cards */
 .features-section {
     position: relative;
     z-index: 10;
@@ -407,7 +399,6 @@ body {
     color: #9ca3af;
 }
 
-/* Timeline Specific Styles */
 .timeline-page {
     position: relative;
     z-index: 10;
@@ -476,9 +467,9 @@ body {
   width: 0.5rem; height: 0.5rem; border-radius: 50%;
   background: #9ca3af;
 }
-.note-add::before { background: #60a5fa; }   /* green */
-.note-tweak::before { background: #60a5fa; } /* blue  */
-.note-fix::before { background: #60a5fa; }   /* yellow */
+.note-add::before { background: #60a5fa; }
+.note-tweak::before { background: #60a5fa; }
+.note-fix::before { background: #60a5fa; }
 .timeline-line.desktop-only {
     display: none;
 }
@@ -523,7 +514,6 @@ body {
     gap: 2rem;
 }
 
-/* Mobile: All on right */
 @media (max-width: 767px) {
     .timeline-content {
         padding-left: 3rem;
@@ -536,7 +526,6 @@ body {
     }
 }
 
-/* Desktop: Alternating */
 @media (min-width: 768px) {
     .timeline-content.left {
         flex-direction: row;
@@ -773,7 +762,6 @@ body {
     color: #22e4ff;
 }
 
-/* Community Page Styles */
 .community-page {
     position: relative;
     z-index: 10;
@@ -941,11 +929,11 @@ body {
 
 .community-icon {
   position: relative;
-  z-index: 1;             /* above the dark overlay */
+  z-index: 1;
   width: 72px;
   height: 72px;
-  object-fit: contain;    /* keep aspect ratio */
-  image-rendering: auto;  /* keep logos crisp */
+  object-fit: contain;
+  image-rendering: auto;
   filter: drop-shadow(0 2px 10px rgba(0,0,0,0.35));
 }
 
@@ -953,7 +941,6 @@ body {
   .community-icon { width: 96px; height: 96px; }
 }
 
-/* If any old emoji spans are still present, hide them */
 .community-emoji { display: none; }
 
 .gradient-darkgrey {
@@ -1101,7 +1088,6 @@ body {
     line-height: 1.75;
 }
 
-/* Footer */
 .footer {
     position: relative;
     z-index: 10;
@@ -1122,7 +1108,6 @@ body {
     margin-bottom: 0.5rem;
 }
 
-/* Animations */
 .animate-fade-in {
     animation: fade-in 1s ease-out;
 }
@@ -1166,7 +1151,6 @@ body {
     }
 }
 
-/* Utility */
 .desktop-only {
     display: none;
 }
@@ -1181,25 +1165,22 @@ body {
     }
 }
 
-.page-header { text-align: center; }  /* was `text-center` */
+.page-header { text-align: center; }
 
 .timeline-container {
-  position: relative; /* anchor for the absolute line/dots */
+  position: relative;
 }
 
-/* Make each item a positioning context so its dot can be placed relative to it */
 .timeline-item {
   position: relative;
-  /* optional: extra vertical breathing room */
   padding-top: 1.5rem;
 }
 
-/* Center the vertical line on desktop (already done, just ensure it's above) */
 @media (min-width: 768px) {
   .timeline-line.desktop-only {
     left: 50%;
     transform: translateX(-50%);
-    width: 2px;                /* slightly thicker for visibility */
+    width: 2px;
     background: linear-gradient(180deg,
       rgba(0, 217, 255, 0.6) 0%,
       rgba(59, 130, 246, 0.6) 50%,
@@ -1207,57 +1188,50 @@ body {
   }
 }
 
-/* --- DOT: pin it to the center line on desktop --- */
 @media (min-width: 768px) {
   .timeline-dot {
     position: absolute;
     left: 50%;
-    top: 1.5rem;               /* aligns the dot with the top of each card area */
+    top: 1.5rem;
     transform: translate(-50%, -50%);
-    width: 14px;               /* fixed size prevents any flex/gap influence */
+    width: 14px;
     height: 14px;
-    aspect-ratio: 1 / 1;       /* belt-and-suspenders: stays perfectly round */
+    aspect-ratio: 1 / 1;
     border-radius: 50%;
-    background: #0a0e17;       /* make center appear “cut out” if you prefer */
-    border: 3px solid #3b82f6; /* crisp ring that pops on dark bg */
+    background: #0a0e17;
+    border: 3px solid #3b82f6;
     box-shadow: 0 0 0 6px rgba(0, 217, 255, 0.1);
-    z-index: 2;                 /* above the line, below content hover glows */
+    z-index: 2;
   }
 
-  /* optional: soften the animated ping so it doesn't read as stretch */
   .timeline-dot::before {
-    inset: -2px;               /* grows from just outside the ring */
+    inset: -2px;
     background: rgba(59, 130, 246, 0.25);
   }
 }
 
-/* --- L/R card layout: keep content off the center line --- */
 @media (min-width: 768px) {
   .timeline-content {
-    /* create room so cards don't collide with center line */
     padding-left: 2rem;
     padding-right: 2rem;
   }
 
-  /* Keep each card to its half of the container */
   .timeline-content.left .update-card,
   .timeline-content.right .update-card {
-    width: calc(50% - 3rem);   /* half the container minus some gutter */
-    max-width: 680px;          /* just to avoid ultra-wide on big screens */
+    width: calc(50% - 3rem);
+    max-width: 680px;
   }
 
-  /* Left-side items: card lives on the left half */
   .timeline-content.left {
-    justify-content: flex-end; /* pushes card to the left half */
+    justify-content: flex-end;
   }
   .timeline-content.left .update-card {
     margin-right: auto;
     margin-left: 0;
   }
 
-  /* Right-side items: card lives on the right half */
   .timeline-content.right {
-    justify-content: flex-start; /* pushes card to the right half */
+    justify-content: flex-start;
   }
   .timeline-content.right .update-card {
     margin-left: auto;
@@ -1265,11 +1239,10 @@ body {
   }
 }
 
-/* --- Mobile keeps your existing left rail --- */
 @media (max-width: 767px) {
   .timeline-dot {
     position: absolute;
-    left: 0.625rem; /* matches your mobile line at 1rem (visually centered in it) */
+    left: 0.625rem;
     top: 0.5rem;
     width: 1.25rem;
     height: 1.25rem;
@@ -1281,14 +1254,12 @@ body {
 }
 
 @media (min-width: 768px) {
-  /* We don't need desktop padding on timeline-content anymore */
   .timeline-content { padding-left: 0; padding-right: 0; }
 
-  /* Dot stays centered on the line (from earlier fix) */
   .timeline-dot {
     position: absolute;
     left: 50%;
-    top: 1.5rem;                /* adjust if you want it lower/higher per item */
+    top: 1.5rem;
     transform: translate(-50%, -50%);
     width: 14px; height: 14px; aspect-ratio: 1/1; border-radius: 50%;
     background: #0a0e17; border: 3px solid #3b82f6;
@@ -1296,15 +1267,13 @@ body {
     z-index: 2;
   }
 
-  /* IMPORTANT: Let the card size itself naturally… */
   .timeline-content .update-card {
-    width: auto;                /* override any previous calc(50% - …) */
-    max-width: 680px;           /* cap so it never looks too wide */
+    width: auto;
+    max-width: 680px;
   }
 
-  /* …then push it fully to its side using a 50% margin off the center line */
   .timeline-content.left  .update-card { 
-    margin-right: calc(50% + 2rem);   /* 2rem = gutter from the line */
+    margin-right: calc(50% + 2rem);
     margin-left: 0;
   }
   .timeline-content.right .update-card { 
@@ -1312,27 +1281,25 @@ body {
     margin-right: 0;
   }
 
-  /* Make sure flex doesn’t stretch the dot */
   .timeline-content.left  > .timeline-dot,
   .timeline-content.right > .timeline-dot { flex: 0 0 auto; }
 
-  /* Optional: if your earlier rule gave the card flex:1, neutralize it */
   .timeline-content.left  > .update-card,
   .timeline-content.right > .update-card { flex: 0 1 auto; }
 }
 
 .logo-icon img {
-  max-width: 70%;      /* scale image down to fit */
+  max-width: 70%;
   max-height: 70%;
-  object-fit: contain; /* preserve proportions */
+  object-fit: contain;
   display: block;
 }
 
 .starfield-canvas {
-  position: fixed;  /* behind everything, covers viewport */
+  position: fixed;
   inset: 0;
   z-index: 0;
-  pointer-events: none; /* don't block clicks */
+  pointer-events: none;
 }
 
 .embed-card {
@@ -1349,7 +1316,7 @@ body {
 .embed-wrapper {
   position: relative;
   width: 100%;
-  height: 72vh;                 /* desktop height */
+  height: 72vh;
   min-height: 420px;
   border-bottom: 1px solid rgba(0, 217, 255, 0.15);
 }
@@ -1368,7 +1335,6 @@ body {
   border-radius: 0.5rem;
 }
 
-/* Toolbar below the embed */
 .embed-toolbar {
   display: flex;
   align-items: center;
@@ -1391,7 +1357,6 @@ body {
   gap: 0.5rem;
 }
 
-/* Small button variant to match your .btn style */
 .btn-small {
   padding: 0.5rem 0.875rem;
   font-size: 0.85rem;
@@ -1401,7 +1366,6 @@ body {
 }
 .btn-small:hover { transform: scale(1.03); }
 
-/* Refresh spin feedback */
 .btn--spinning { pointer-events: none; opacity: 0.85; }
 .btn--spinning::after {
   content: " ⟳";
@@ -1421,19 +1385,18 @@ body {
 }
 
 .update-card .update-image {
-  width: 100%;             /* fill width of card */
-  height: auto;            /* scale height proportionally */
-  max-height: 250px;       /* limit height so it doesn’t eat too much space */
-  object-fit: cover;       /* crop to maintain aspect ratio */
+  width: 100%;
+  height: auto;
+  max-height: 250px;
+  object-fit: cover;
   border-radius: 0.75rem;
   overflow: hidden;
 }
 
-/* Optionally wrap in container for fixed aspect ratio */
 .update-card .image-wrapper {
   position: relative;
   width: 100%;
-  padding-top: 56.25%;     /* for 16:9 ratio */
+  padding-top: 56.25%;
   overflow: hidden;
   border-radius: 0.75rem;
 }
@@ -1449,16 +1412,15 @@ body {
   position: fixed;
   inset: 0;
   z-index: 0;
-  pointer-events: none;          /* background should be unclickable */
+  pointer-events: none;
   contain: layout paint style;
 }
 
-/* Background image layer */
 .starfield-bg .bg-image {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-image: url("images/images/oldskybox.png"); /* <- your image */
+  background-image: url("images/images/oldskybox.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1466,16 +1428,13 @@ body {
   backface-visibility: hidden;
 }
 
-/* Gradient overlay ABOVE the photo, BELOW the stars */
 .starfield-bg .gradient-overlay {
   position: absolute;
   inset: 0;
   z-index: 1;
-  /* Darken a bit for legibility; adjust to taste */
   background: linear-gradient(180deg, rgba(10,14,23,0.85) 0%, rgba(13,21,32,0.6) 50%, rgba(10,14,23,0.85) 100%);
 }
 
-/* Ensure the canvas stars sit above both layers */
 .starfield-canvas {
   position: absolute !important;
   inset: 0 !important;
@@ -1485,7 +1444,6 @@ body {
   backface-visibility: hidden;
 }
 
-/* Optional: tone things down on mobile for perf/readability */
 @media (max-width: 767px) {
   .starfield-bg .bg-image { filter: brightness(0.9) saturate(0.95); }
   .starfield-bg .gradient-overlay {
@@ -1493,7 +1451,6 @@ body {
   }
 }
 
-/* (Optional) alternate mobile image */
 @media (max-width: 767px) {
   .starfield-bg .bg-image {
     background-image: url("images/oldskybox.png");
@@ -1501,30 +1458,29 @@ body {
 }
 
 .footer-content a {
-  color: #00d9ff;        /* light blue */
-  text-decoration: none; /* no underline by default */
+  color: #00d9ff;
+  text-decoration: none;
   font-weight: 600;
   transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .footer-content a:hover {
-  color: #22e4ff;        /* brighter blue on hover */
+  color: #22e4ff;
   text-decoration: underline;
-  text-shadow: 0 0 8px rgba(0, 217, 255, 0.6); /* subtle glow */
+  text-shadow: 0 0 8px rgba(0, 217, 255, 0.6);
 }
 
 .starfield-bg .bg-image {
-  background-image: url("images/oldskybox.png"); /* fixed path */
+  background-image: url("images/oldskybox.png");
   background-size: cover;
-  background-position: center; /* keep centered on larger screens */
+  background-position: center;
   background-repeat: no-repeat;
 }
 
-/* Mobile: anchor image to the left half */
 @media (max-width: 767px) {
   .starfield-bg .bg-image {
-    background-position: left center;      /* <-- the key change */
-    filter: brightness(0.9) saturate(0.95); /* keep your existing mobile tone-down */
+    background-position: left center;
+    filter: brightness(0.9) saturate(0.95);
   }
 
   .starfield-bg .gradient-overlay {
@@ -1537,15 +1493,14 @@ body {
   }
 }
 
-/* Mobile: center dot on the left rail */
 @media (max-width: 767px) {
   .timeline-line.mobile-only {
-    left: 1rem;          /* your existing rail position */
-    width: 2px;          /* make sure it's consistent */
+    left: 1rem;
+    width: 2px;
   }
   .timeline-dot {
-    left: 1rem;          /* anchor to the rail */
-    top: 0.5rem;         /* your existing vertical offset */
+    left: 1rem;
+    top: 0.5rem;
     transform: translate(-50%, -50%);
     width: 1.25rem;
     height: 1.25rem;
@@ -1555,7 +1510,6 @@ body {
   }
 }
 
-/* Make the rail solid (no fade) on all viewports */
 .timeline-line {
   background: linear-gradient(
     180deg,
@@ -1564,15 +1518,14 @@ body {
   );
 }
 
-/* Kill the blurred overlay that also causes fade */
 .timeline-line::before {
-  content: none; /* or display: none; */
+  content: none;
 }
 
 .timeline-line {
-  background: #3b82f6 !important;  /* solid blue */
+  background: #3b82f6 !important;
 }
 
 .timeline-line::before {
-  content: none !important;  /* remove overlay gradient */
+  content: none !important;
 }
