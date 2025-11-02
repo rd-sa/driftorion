@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>404 • No Shot VR</title>
+<link rel="icon" type="image/png" href="images/noshoticon.png">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .error-title {
+    font-size: clamp(80px, 14vw, 220px);
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    color: #fff;
+    text-shadow: 0 0 25px rgba(255,255,255,0.8), 
+                 0 0 60px rgba(0,255,255,0.6), 
+                 0 0 100px rgba(255,0,120,0.5);
+    margin-bottom: 10px;
+    user-select: none;
+  }
+
+  .error-sub {
+    font-size: clamp(18px, 4vw, 36px);
+    margin-bottom: 30px;
+    opacity: 0.9;
+  }
+
+  .home-btn {
+    display:inline-block;
+    padding:14px 34px;
+    border-radius:10px;
+    background:#ff2b6d;
+    color:#fff;
+    font-weight:700;
+    text-decoration:none;
+    margin-right:10px;
+    transition:.25s;
+  }
+  .home-btn:hover { transform: scale(1.05); filter: brightness(1.2); }
+</style>
+</head>
+<body>
+
+<img src="images/background.png" alt="" class="arena-bg-img" aria-hidden="true">
+<div class="arena-veil"></div>
+
+<div class="layer" id="layer">
+  <img src="images/blueblock.png" class="shape blue-block">
+  <img src="images/redblock.png" class="shape red-block">
+</div>
+
+<div class="content">
+  <img src="images/noshotlogo.png" class="logo">
+
+  <div class="error-title">404</div>
+  <div class="error-sub">Page Not Found</div>
+
+  <div>
+    <a class="home-btn" href="/noshot">Return Home</a>
+  </div>
+</div>
+
+<footer>© <span id="yr"></span> No Shot</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
